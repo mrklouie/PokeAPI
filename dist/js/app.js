@@ -1,3 +1,5 @@
+import * as module from "./gsap.js";
+
 const url = "https://pokeapi.co/api/v2/pokemon?offset=0&Limit=20";
 const promises = [];
 const pokeId = []
@@ -60,3 +62,8 @@ const createPokemon=async()=>{
 
 //CALLING THE MAIN FUNCTION
 fetchPokemon();
+
+
+
+
+

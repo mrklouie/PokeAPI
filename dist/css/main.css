@@ -8,12 +8,17 @@
 }
 
 body {
+  position: relative;
   overflow-x: hidden;
-  background-image: url("/dist/assets/no-outline-pukeballs.svg");
-  background-size: 80%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: 200% -20%;
+}
+
+body > img {
+  position: fixed;
+  width: 65%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  right: -3rem;
+  top: -2rem;
 }
 
 header {
