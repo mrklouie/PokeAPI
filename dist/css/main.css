@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;700;800&family=Merriweather:wght@400;900&family=Montserrat:wght@100;300;400;500;700;800&family=Poppins:wght@400;500;700;800&family=Raleway:wght@400;700;800&display=swap");
+*, *::after, *::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+  background-image: url("/dist/assets/no-outline-pukeballs.svg");
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 200% -20%;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1em;
+}
+
+header .go-back {
+  transform: rotate(180deg);
+  display: inline-block;
+  font-size: 2rem;
+}
+
+section {
+  z-index: 2;
+  margin-top: 2em;
+  padding: 1em 1em 3em 1em;
+  min-height: 100vh;
+  position: relative;
+  top: 71px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: minmax(170px, 1fr);
+  gap: 1em;
+}
+
+.grid-container__card {
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  position: relative;
+  border-radius: 20px;
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.grid-container__card::before {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  width: 45%;
+  height: 100%;
+  bottom: -3rem;
+  right: -1rem;
+  background-image: url("/dist/assets/no-outline-pukeballs.svg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.grid-container__left {
+  color: black;
+  text-align: center;
+}
+
+.grid-container__left small {
+  border-radius: 50px;
+  display: block;
+  background-color: rgba(246, 246, 242, 0.3);
+  margin: .5em 0;
+}
+
+.grid-container__right img {
+  width: 150px;
+}
+/*# sourceMappingURL=main.css.map */

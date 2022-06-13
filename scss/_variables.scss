@@ -1,0 +1,13 @@
+$font-weights:(
+    regular: 400,
+    medium: 500,
+    bold: 700,
+    extraBold: 800
+);
+
+
+@function getWeight($weight){
+    @return map-get($font-weights , $weight);
+}
+
+
