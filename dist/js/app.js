@@ -1,15 +1,24 @@
 import * as module from "./gsap.js";
 
+
+
+//=========ALL VARIABLES HERE=========//
 const url = "https://pokeapi.co/api/v2/pokemon?offset=0&Limit=20";
 const promises = [];
 const pokeId = []
 
 
+
+
+
+
+
+
+//=========ALL FUNCTIONS HERE=========//
 const fetchPokemon = async()=>{
     const res = await fetch(url);
     const data = await res.json();
     const { results, next, previous } = data;
-    console.log(next)
     //Iterate to get the URL for them ID's
     // console.log(results);
     for(let i = 0; i < 20; i++){
@@ -21,10 +30,10 @@ const fetchPokemon = async()=>{
          
         }
     }
-    console.log(pokeId); 
+    // console.log(pokeId); 
 
     //Uncomment this to call the function
-    // getPokemon();
+    getPokemon();
 }
 
 const getPokemon =async()=>{
@@ -50,8 +59,10 @@ const getPokemon =async()=>{
 }
 
 
+
+
 //Creattion of Pokemon Cards
-//Use Template Strings
+//Use Template Literals
 //Modify mo naden dito yung mga background color per Type ng pukemon
 const createPokemon=async()=>{
 
@@ -59,9 +70,8 @@ const createPokemon=async()=>{
 
 
 
-
 //CALLING THE MAIN FUNCTION
-fetchPokemon();
+// fetchPokemon();
 
 
 
