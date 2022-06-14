@@ -59,6 +59,11 @@ section {
   top: 71px;
 }
 
+section .load-more {
+  text-align: center;
+  margin-top: 1.5em;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -97,7 +102,7 @@ section {
   border-radius: 20px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .grid-container__card::before {
@@ -116,7 +121,6 @@ section {
 
 .grid-container__left {
   color: white;
-  text-align: center;
 }
 
 .grid-container__left h2 {
@@ -124,10 +128,19 @@ section {
 }
 
 .grid-container__left small {
+  text-align: center;
+  width: 6em;
   border-radius: 50px;
   display: block;
   background-color: rgba(246, 246, 242, 0.2);
   margin: .5em 0;
+}
+
+.grid-container__texts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .grid-container__right img {

@@ -3,9 +3,22 @@ export { timeline }
 
 
 const timeline = gsap.timeline();
-timeline.to("#pukeBall",{
+
+timeline
+.to("#pukeBall",{
     rotation: 360,
     repeat: -1,
-    duration: 50,
+    duration: 5,
     ease: "linear"
 })
+
+
+
+
+
+
+
+
+
+
+

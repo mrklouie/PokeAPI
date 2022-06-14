@@ -65,14 +65,14 @@ const getPokemon =async()=>{
 //Creattion of Pokemon Cards
 //Use Template Literals
 //Modify mo naden dito yung mga background color per Type ng pukemon
-const createPokemon=async(data)=>{
+const createPokemon=(data)=>{
        data.forEach(pokemon=>{
         let secondType = "";
         const name = pokemon.name;
         const types = pokemon.types;
         const firstType = types[0].type.name;
         const image = pokemon.image;
-        console.log(firstType);
+
         if(types[1]){
             secondType = types[1].type.name
         }
@@ -93,7 +93,7 @@ const createPokemon=async(data)=>{
         </div>
         `
     })    
-    loadScreen.hide()
+    loadScreen.hide();
 }
 
 
