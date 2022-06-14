@@ -32,12 +32,16 @@ body > img {
   color: black;
 }
 
+.overlay.active {
+  display: flex;
+}
+
 header {
   z-index: 2;
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 1em;
+  padding: 2em;
 }
 
 header .go-back {
@@ -48,8 +52,8 @@ header .go-back {
 }
 
 section {
-  margin-top: 2em;
-  padding: 1em 1em 3em 1em;
+  margin-top: 5em;
+  padding: 1em 2em 3em 2em;
   min-height: 100vh;
   position: relative;
   top: 71px;
@@ -58,21 +62,39 @@ section {
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-auto-rows: minmax(170px, 1fr);
+  grid-auto-rows: minmax(150px, 1fr);
   gap: 1em;
+}
+
+.grid-container .grass {
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+}
+
+.grid-container .fire {
+  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+}
+
+.grid-container .water {
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+.grid-container .bug {
+  background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+}
+
+.grid-container .normal {
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
 }
 
 .grid-container__card {
   z-index: 1;
   pointer-events: all;
-  outline: 1px solid black;
   cursor: pointer;
   overflow: hidden;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
   z-index: 1;
   position: relative;
   border-radius: 20px;
-  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -89,7 +111,7 @@ section {
   background-image: url("/dist/assets/no-outline-pukeballs.svg");
   background-size: 100%;
   background-repeat: no-repeat;
-  opacity: 0.3;
+  opacity: 0.6;
 }
 
 .grid-container__left {
@@ -104,11 +126,24 @@ section {
 .grid-container__left small {
   border-radius: 50px;
   display: block;
-  background-color: rgba(246, 246, 242, 0.7);
+  background-color: rgba(246, 246, 242, 0.2);
   margin: .5em 0;
 }
 
 .grid-container__right img {
-  width: 150px;
+  width: 100px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-5px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
 }
 /*# sourceMappingURL=main.css.map */
