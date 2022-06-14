@@ -25,7 +25,7 @@ body > img {
   z-index: 99;
   justify-content: center;
   align-items: center;
-  display: flex;
+  display: none;
 }
 
 .overlay h1 {
@@ -95,6 +95,10 @@ section {
 .grid-container__left {
   color: white;
   text-align: center;
+}
+
+.grid-container__left h2 {
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4);
 }
 
 .grid-container__left small {

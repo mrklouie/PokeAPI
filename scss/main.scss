@@ -25,7 +25,7 @@ body{
     z-index: 99;
     justify-content: center;
     align-items: center;
-    display: flex;
+    display: none;
     & h1{
         color: black;
     }
@@ -96,7 +96,7 @@ section{
         color: white;
         text-align: center;
         & h2{
-
+            -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4);
         }
          
         & small{

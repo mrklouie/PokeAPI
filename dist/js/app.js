@@ -9,11 +9,6 @@ const pokeId = []
 
 
 
-
-
-
-
-
 //=========ALL FUNCTIONS HERE=========//
 const fetchPokemon = async()=>{
     const res = await fetch(url);
@@ -43,7 +38,6 @@ const getPokemon =async()=>{
             const data = await res.json();
             promises.push(data);
         }
-    
         const resultData = await Promise.all(promises.map(data=>({
             name: data.name,
             types: data.types,
@@ -71,7 +65,7 @@ const createPokemon=async()=>{
 
 
 //CALLING THE MAIN FUNCTION
-// fetchPokemon();
+fetchPokemon();
 
 
 
