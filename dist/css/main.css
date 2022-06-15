@@ -8,6 +8,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow: hidden;
 }
 
 body > img {
@@ -216,6 +217,125 @@ section .load-more {
   100% {
     transform: translatey(0px);
   }
+}
+
+.overlay2 {
+  background: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+  overflow: hidden;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.overlay2__pikachu {
+  z-index: 1;
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.overlay2__header {
+  color: white;
+  padding: 1em;
+}
+
+.overlay2__header .back {
+  transform: rotate(180deg);
+  font-size: 3rem;
+  display: inline-block;
+}
+
+.overlay2__pokemon-name {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.overlay2__header-bottom {
+  height: fit-content;
+  margin-top: 1em;
+}
+
+.overlay2__types {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.overlay2__types span {
+  white-space: nowrap;
+  width: 6em;
+  display: inline-block;
+  background-color: rgba(246, 246, 242, 0.5);
+  border-radius: 50px;
+  text-align: center;
+  font-size: .9rem;
+  padding: .5em;
+}
+
+.overlay2__types .right {
+  font-weight: 700;
+}
+
+.overlay2__stats {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay2__stats .contents {
+  position: absolute;
+  bottom: 0;
+  height: 90%;
+  width: 100%;
+}
+
+.contents__header {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  font-size: .8rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.contents__header li {
+  cursor: pointer;
+  position: relative;
+}
+
+.contents__header li::before {
+  transform: scaleX(0);
+  position: absolute;
+  content: "";
+  height: 2px;
+  background-color: black;
+  width: 100%;
+  bottom: 0;
+  transition: transform 0.2s ease-in-out;
+  transform-origin: right;
+}
+
+.contents__header li:hover::before {
+  transform: scaleX(100%);
+  transform-origin: left;
+}
+
+.contents__header li:first-child {
+  color: black;
+  font-weight: 700;
 }
 
 @media (max-width: 360px) {

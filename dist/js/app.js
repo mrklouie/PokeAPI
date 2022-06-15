@@ -106,31 +106,6 @@ const createPokemon=(data)=>{
     const cards = document.querySelectorAll(".grid-container__card").length;
     console.log(`Number of Cards: ${cards}`);
     loadScreen.hide();
-
-    document.querySelectorAll(".grid-container__card").forEach(card=>{
-        card.addEventListener("click", async()=>{
-          const data = await animateCard(card)
-          card.style.height = "100vh";
-          card.style.width = "100vw";
-          document.querySelector("section").style.padding = "0"
-        })
-    })
-
-
-    const animateCard=(card)=>{
-        return new Promise((resolve,reject)=>{
-            try {
-                card.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                    inline: "center"
-                });
-                resolve("resolved")
-            } catch (error) {
-                reject(new Error("An error has been occured", error))
-            }
-        })
-    }
 }
 
 

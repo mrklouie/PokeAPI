@@ -14,6 +14,13 @@ timeline
 
 
 
+// gsap.from(".overlay2",{
+//     yPercent: 100,
+//     duration: 0.9,
+//     ease: Back.easeOut.config(0.5)
+// })
+
+
 
 
 
