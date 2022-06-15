@@ -1,3 +1,26 @@
+//I am using a 'Lists' Values from SASS
+//Please research more about 'Lists' to fully understand it
+//Parang array???
+//But the first index is 0 unlike most other Prog Languanges
+$list-gradient-grass: to right, #43e97b 0%, #38f9d7 100%;
+$list-gradient-poison: 135deg, #667eea 0%, #764ba2 100%;
+$list-gradient-fire: to right, #fa709a 0%, #fee140 100%;
+$list-gradient-water: to right, #4facfe 0%, #00f2fe 100%;
+$list-gradient-bug: -60deg, #16a085 0%, #f4d03f 100%;
+$list-gradient-flying: to right, #c1c161 0%, #c1c161 0%, #d4d4b1 100%;
+$list-gradient-fairy: -225deg, #B6CEE8 0%, #F578DC 100%;
+$list-gradient-ground: to top, #e6b980 0%, #eacda3 100%;
+$list-gradient-electric: 120deg, #d4fc79 0%, #96e6a1 100%;
+$list-gradient-normal: to top, #cfd9df 0%, #e2ebf0 100%;
+$list-gradient-rock: to right, #c1c161 0%, #c1c161 0%, #d4d4b1 100%;
+$list-gradient-psychic: to top, #7028e4 0%, #e5b2ca 100%;
+$list-gradient-fighting: to top, #f43b47 0%, #453a94 100%;
+$list-gradient-ghost: to top, #0250c5 0%, #d43f8d 100%;
+$list-gradient-ice: -225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%;
+$list-gradient-dragon: -60deg, #ff5858 0%, #f09819 100%;
+$list-gradient-dark: 60deg, #29323c 0%, #485563 100%;
+$list-gradient-steel: -180deg, #BCC5CE 0%, #929EAD 98%;
+
 $font-weights:(
     regular: 400,
     medium: 500,
@@ -6,8 +29,22 @@ $font-weights:(
 );
 
 
+
+
+@mixin getPokemonColor($list){
+    background: linear-gradient($list)
+}
+
+
 @function getWeight($weight){
     @return map-get($font-weights , $weight);
 }
 
 
+
+
+@mixin iphoneXr(){
+    @media (max-width: 360px){
+        @content;
+    }
+}

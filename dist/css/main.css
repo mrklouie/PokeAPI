@@ -6,6 +6,10 @@
   font-family: 'Poppins', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body > img {
   z-index: -1;
   position: fixed;
@@ -60,6 +64,7 @@ section {
 }
 
 section .load-more {
+  cursor: pointer;
   text-align: center;
   margin-top: 1.5em;
 }
@@ -67,28 +72,80 @@ section .load-more {
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-auto-rows: minmax(150px, 1fr);
+  grid-auto-rows: minmax(150px, auto);
   gap: 1em;
 }
 
 .grid-container .grass {
-  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+}
+
+.grid-container .poison {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .grid-container .fire {
-  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+  background: linear-gradient(to right, #fa709a 0%, #fee140 100%);
 }
 
 .grid-container .water {
-  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
 }
 
 .grid-container .bug {
-  background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+  background: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);
+}
+
+.grid-container .flying {
+  background: linear-gradient(to right, #c1c161 0%, #c1c161 0%, #d4d4b1 100%);
+}
+
+.grid-container .fairy {
+  background: linear-gradient(-225deg, #B6CEE8 0%, #F578DC 100%);
+}
+
+.grid-container .ground {
+  background: linear-gradient(to top, #e6b980 0%, #eacda3 100%);
+}
+
+.grid-container .electric {
+  background: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
 }
 
 .grid-container .normal {
-  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+
+.grid-container .rock {
+  background: linear-gradient(to right, #c1c161 0%, #c1c161 0%, #d4d4b1 100%);
+}
+
+.grid-container .psychic {
+  background: linear-gradient(to top, #7028e4 0%, #e5b2ca 100%);
+}
+
+.grid-container .fighting {
+  background: linear-gradient(to top, #f43b47 0%, #453a94 100%);
+}
+
+.grid-container .ghost {
+  background: linear-gradient(to top, #f43b47 0%, #453a94 100%);
+}
+
+.grid-container .ice {
+  background: linear-gradient(to top, #f43b47 0%, #453a94 100%);
+}
+
+.grid-container .dragon {
+  background: linear-gradient(to top, #f43b47 0%, #453a94 100%);
+}
+
+.grid-container .dark {
+  background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+}
+
+.grid-container .steel {
+  background: linear-gradient(-180deg, #BCC5CE 0%, #929EAD 98%);
 }
 
 .grid-container__card {
@@ -103,15 +160,16 @@ section .load-more {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  transition: all 1s ease-in-out;
 }
 
 .grid-container__card::before {
   z-index: -1;
   position: absolute;
   content: "";
-  width: 45%;
+  width: 60%;
   height: 100%;
-  bottom: -3rem;
+  bottom: -4rem;
   right: -1rem;
   background-image: url("/dist/assets/no-outline-pukeballs.svg");
   background-size: 100%;
@@ -121,10 +179,6 @@ section .load-more {
 
 .grid-container__left {
   color: white;
-}
-
-.grid-container__left h2 {
-  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4);
 }
 
 .grid-container__left small {
@@ -148,6 +202,10 @@ section .load-more {
   animation: float 3s ease-in-out infinite;
 }
 
+.load-more img {
+  width: 20%;
+}
+
 @keyframes float {
   0% {
     transform: translatey(0px);
@@ -157,6 +215,25 @@ section .load-more {
   }
   100% {
     transform: translatey(0px);
+  }
+}
+
+@media (max-width: 360px) {
+  section {
+    padding: 0 1em;
+    margin: 7em 0;
+  }
+  .grid-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid-container__card img {
+    width: 65px;
+  }
+  .grid-container__left h2 {
+    font-size: .6rem;
+  }
+  .grid-container__left small {
+    font-size: .5rem;
   }
 }
 /*# sourceMappingURL=main.css.map */

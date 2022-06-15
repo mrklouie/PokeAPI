@@ -3,27 +3,35 @@ import * as module from "./gsap.js";
 
 
 //=========ALL VARIABLES HERE=========//
+let nextUrl
+let prevUrl
+
+const loadMore = document.querySelector(".load-more");
 const gridContainer = document.querySelector(".grid-container");
 const overlay = document.querySelector(".overlay");
-const url = "https://pokeapi.co/api/v2/pokemon?offset=0&Limit=20";
 const promises = [];
 const pokeId = []
 
 
 
+
+
 const loadScreen = new module.load(overlay);
-
-
-
 //=========ALL FUNCTIONS HERE=========//
-const fetchPokemon = async()=>{
-    loadScreen.show()
-    const res = await fetch(url);
-    const data = await res.json();
-    const { results, next, previous } = data;
-    //Iterate to get the URL for them ID's
-    // console.log(results);
-    for(let i = 0; i < 20; i++){
+function capitalize(el){
+    return el.charAt(0).toUpperCase() + el.substring(1);
+}
+
+
+const fetchPokemon = async(url)=>{
+    try{
+        loadScreen.show()
+        const res = await fetch(url);
+        const data = await res.json();
+        const { results, next, previous} = data;
+        nextUrl = next;
+        prevUrl = prevUrl;
+        for(let i = 0; i < 20; i++){
         if(results){
             const {url} = results[i];
             const urlArray = url.split("/");
@@ -32,9 +40,11 @@ const fetchPokemon = async()=>{
          
         }
     }
-    //Uncomment this to call the function
-    
     getPokemon();
+    }catch(err){
+        console.log(err.message)
+    }
+           
 }
 
 const getPokemon =async()=>{
@@ -82,7 +92,7 @@ const createPokemon=(data)=>{
         <div class="grid-container__card ${firstType}">
           <div class="grid-container__left">
             <div class="grid-container__texts">
-              <h2>${name}</h2>
+              <h2>${capitalize(name)}</h2>
               <small>${firstType}</small>
               <small>${secondType}</small>
             </div>
@@ -93,8 +103,45 @@ const createPokemon=(data)=>{
         </div>
         `
     })    
+    const cards = document.querySelectorAll(".grid-container__card").length;
+    console.log(`Number of Cards: ${cards}`);
     loadScreen.hide();
+
+    document.querySelectorAll(".grid-container__card").forEach(card=>{
+        card.addEventListener("click", async()=>{
+          const data = await animateCard(card)
+          card.style.height = "100vh";
+          card.style.width = "100vw";
+          document.querySelector("section").style.padding = "0"
+        })
+    })
+
+
+    const animateCard=(card)=>{
+        return new Promise((resolve,reject)=>{
+            try {
+                card.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                    inline: "center"
+                });
+                resolve("resolved")
+            } catch (error) {
+                reject(new Error("An error has been occured", error))
+            }
+        })
+    }
 }
+
+
+
+
+//Trigger this after clicking
+//After fetching ibalik mo naman sa 'Load more'
+loadMore.addEventListener("click", ()=>{
+    fetchPokemon(nextUrl)
+  
+})
 
 
 
@@ -103,9 +150,7 @@ const createPokemon=(data)=>{
 
 
 //CALLING THE MAIN FUNCTION
-fetchPokemon();
-
-
+fetchPokemon("https://pokeapi.co/api/v2/pokemon?offset=0&Limit=20");
 
 
 

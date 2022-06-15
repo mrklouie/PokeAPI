@@ -2,6 +2,12 @@
 @import "./variables"; 
 
 
+
+
+html{
+    scroll-behavior: smooth;
+}
+
 body{
 
     // overflow: hidden;
@@ -35,7 +41,6 @@ body{
     }
 }
 
-
 header{
     z-index: 2;
     position: fixed;
@@ -49,6 +54,7 @@ header{
         display: inline-block;
         font-size: 2rem;
     }    
+    
 }
 
 section{
@@ -60,6 +66,7 @@ section{
 
 
     & .load-more{
+        cursor: pointer;
         text-align: center;
         margin-top: 1.5em;
     }
@@ -69,32 +76,76 @@ section{
     
     display: grid;
     grid-template-columns: 1fr;
-    grid-auto-rows: minmax(150px, 1fr);
+    grid-auto-rows: minmax(150px, auto);
     gap: 1em;
 
-
-
    & .grass{
-        background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+        @include getPokemonColor($list-gradient-grass)
+   }
+
+   & .poison{
+        @include getPokemonColor($list-gradient-poison)
    }
 
    & .fire{
-        background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+        @include getPokemonColor($list-gradient-fire)
    }
-
+   
    & .water{
-        background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+        @include getPokemonColor($list-gradient-water)
    }
 
    & .bug{
-        background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+        @include getPokemonColor($list-gradient-bug)
    }
 
+   & .flying{
+        @include getPokemonColor($list-gradient-flying)
+   }
 
+   & .fairy{
+        @include getPokemonColor($list-gradient-fairy)
+   }
+
+   & .ground{
+        @include getPokemonColor($list-gradient-ground)
+   }
+   & .electric{
+        @include getPokemonColor($list-gradient-electric)
+   }
    & .normal{
-        background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+        @include getPokemonColor($list-gradient-normal)
    }
 
+   & .rock{
+        @include getPokemonColor($list-gradient-rock)
+   }
+
+   & .psychic{
+        @include getPokemonColor($list-gradient-psychic)
+   }
+
+   & .fighting{
+        @include getPokemonColor($list-gradient-fighting)
+   }
+
+   & .ghost{
+        @include getPokemonColor($list-gradient-fighting)
+   }
+
+   & .ice{
+        @include getPokemonColor($list-gradient-fighting)
+   }
+
+   & .dragon{
+        @include getPokemonColor($list-gradient-fighting)
+   }
+   & .dark{
+        @include getPokemonColor($list-gradient-dark)
+   }
+   & .steel{
+        @include getPokemonColor($list-gradient-steel)
+   }
 
     &__card{
         z-index: 1;
@@ -108,17 +159,15 @@ section{
         display: flex;
         align-items: center;
         justify-content: space-evenly;
-
-
-
+        transition: all 1s ease-in-out;
 
         &::before{
             z-index: -1;
             position: absolute;
             content: "";
-            width: 45%;
+            width: 60%;
             height: 100%;
-            bottom: -3rem;
+            bottom: -4rem;
             right: -1rem;
             background-image: url("/dist/assets/no-outline-pukeballs.svg");
             background-size: 100%;
@@ -132,7 +181,8 @@ section{
         color: white;
 
         & h2{
-            -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4);
+     
+            
         }
          
         & small{
@@ -163,6 +213,13 @@ section{
 }
 
 
+.load-more{
+    & img{
+        width: 20%;
+    }
+}
+
+
 
 @keyframes float {
 	0% {
@@ -181,3 +238,39 @@ section{
 
 
 
+@include iphoneXr(){
+
+    section{
+        padding: 0 1em;
+        margin: 7em 0;
+    }
+    .grid-container{
+        grid-template-columns: 1fr 1fr;
+
+        &__card{
+
+            & img{
+                width: 65px;
+            }
+        }
+
+
+        &__left{
+
+
+
+            & h2{
+                font-size: .6rem;
+            }
+
+
+            & small{
+                font-size: .5rem;
+            }
+        }
+
+        &__texts{
+
+        }
+    }
+}
