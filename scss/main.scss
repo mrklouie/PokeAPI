@@ -239,8 +239,8 @@ section{
 
 
 
-
 .overlay2{
+
     @include getPokemonColor($list-gradient-grass);
     overflow: hidden;
     background-color: white;
@@ -332,15 +332,22 @@ section{
 
 
 .contents{
+    font-size: .8rem;
+    padding: 1.5em;
 
+
+    & .col-1{
+        color: rgba(0,0,0,0.5) !important
+    }
 
     &__header{
-        display: flex;
-        justify-content: space-around;
-        list-style-type: none;
-        font-size: .8rem;
-        color: rgba(0,0,0,0.5);
 
+        display: flex;
+        justify-content: space-between;
+        list-style-type: none;
+   
+        color: rgba(0,0,0,0.5);
+        text-align: right;
         & li{   
             cursor: pointer;
             position: relative;
@@ -368,12 +375,43 @@ section{
             }
         }
     }
+
+
+    &__mid{
+        padding-top: .5em;
+        // outline: 1px solid black;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 5px;
+
+
+      
+    }
+
+
+    &__bottom{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 5px;
+        & .egg-grass{
+            grid-row: 5;
+            grid-column: 2/3;
+        }
+        & .egg-cycle{
+            grid-row: 5;
+        }
+    }
+    &__breeding{
+        font-weight: getWeight(bold);
+        grid-column: 1/-1;
+        margin-top: .5em;
+        font-size: 1.2em !important;
+    }
 }
 
 
 
 @include iphoneXr(){
-
     section{
         padding: 0 1em;
         margin: 7em 0;
