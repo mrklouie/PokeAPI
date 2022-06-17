@@ -3,6 +3,7 @@ import * as module from "./gsap.js";
 
 
 //=========ALL VARIABLES HERE=========//
+const back = document.querySelector(".back");
 let nextUrl
 let prevUrl
 const loadMore = document.querySelector(".load-more");
@@ -11,6 +12,13 @@ const overlay = document.querySelector(".overlay");
 const promises = [];
 const pokeId = []
 const loadScreen = new module.load(overlay);
+const aboutEl = document.getElementById("about");
+const timeline = gsap.timeline({paused: true});
+timeline.to(".overlay2",{
+    yPercent: -100,
+    duration: 0.9,
+    ease: Back.easeOut.config(0.2)
+})
 
 
 
@@ -57,9 +65,9 @@ const getPokemon =async()=>{
         const resultData = await Promise.all(promises.map(data=>({
             name: data.name,
             types: data.types,
-            image: data.sprites.other.dream_world.front_default
+            image: data.sprites.other.dream_world.front_default,
+            id: data.id
         })));
-    
         createPokemon(resultData)
         pokeId.splice(0, pokeId.length);
         promises.splice(0, promises.length);
@@ -79,13 +87,14 @@ const createPokemon=(data)=>{
         const types = pokemon.types;
         const firstType = types[0].type.name;
         const image = pokemon.image;
+        const id = pokemon.id;
         if(types[1]){
             secondType = types[1].type.name
         }
         gridContainer.innerHTML += 
         `
         <div class="grid-container__card ${firstType}">
-          <div class="grid-container__left">
+          <div class="grid-container__left" data-target-id="${id}">
             <div class="grid-container__texts">
               <h2>${capitalize(name)}</h2>
               <small>${firstType}</small>
@@ -98,9 +107,23 @@ const createPokemon=(data)=>{
         </div>
         `
     })    
-    const cards = document.querySelectorAll(".grid-container__card").length;
-    console.log(`Number of Cards: ${cards}`);
     loadScreen.hide();
+    const cards = document.querySelectorAll(".grid-container__card");
+    cards.forEach(card=>{
+        card.addEventListener("click",()=>{
+            const id = card.querySelector("[data-target-id]").dataset.targetId;
+            console.log(`Pokemon ID: ${id}`);   
+            timeline.play()
+            document.querySelector("html").style.overflow = "hidden"
+        })
+    })
+
+
+    back.addEventListener("click",()=>{
+        timeline.reverse(0.6)
+        document.querySelector("html").style.overflow = "unset"
+    })
+
 }
 
 //Trigger this after clicking
@@ -115,8 +138,6 @@ loadMore.addEventListener("click", ()=>{
 fetchPokemon("https://pokeapi.co/api/v2/pokemon?offset=0&Limit=20");
 
 
-
-const aboutEl = document.getElementById("about");
 
 
 
@@ -167,5 +188,7 @@ aboutEl.addEventListener("click", async()=>{
         opacity: 1
     })
 })
+
+
 
 

@@ -8,7 +8,6 @@
 
 html {
   scroll-behavior: smooth;
-  overflow: hidden;
 }
 
 body > img {
@@ -229,6 +228,7 @@ section .load-more {
   left: 0;
   right: 0;
   z-index: 99;
+  transform: translateY(100%);
 }
 
 .overlay2__pikachu {
