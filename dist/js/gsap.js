@@ -3,9 +3,6 @@ export { timeline }
 
 
 const timeline = gsap.timeline();
-const timeline2 = gsap.timeline({
-    paused: true
-});
 
 timeline
 .to("#pukeBall",{
@@ -15,12 +12,15 @@ timeline
     ease: "linear"
 })
 
-timeline2.to(".overlay2",{
-    yPercent: -100,
-    duration: 0.9,
-    ease: Back.easeOut.config(0.2)
-})
 
+
+
+
+// gsap.to(".overlay2",{
+//     yPercent: -100,
+//     duration: 0.9,
+//     ease: Back.easeOut.config(0.1)
+// })
 
 
 

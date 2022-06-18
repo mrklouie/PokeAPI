@@ -218,6 +218,78 @@ section .load-more {
   }
 }
 
+#bg__grass {
+  background: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+}
+
+#bg__poison {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+#bg__fire {
+  background: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+}
+
+#bg__water {
+  background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+}
+
+#bg__bug {
+  background: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);
+}
+
+#bg__flying {
+  background: linear-gradient(to right, #c1c161 0%, #c1c161 0%, #d4d4b1 100%);
+}
+
+#bg__fairy {
+  background: linear-gradient(-225deg, #B6CEE8 0%, #F578DC 100%);
+}
+
+#bg__ground {
+  background: linear-gradient(to top, #e6b980 0%, #eacda3 100%);
+}
+
+#bg__electric {
+  background: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+}
+
+#bg__normal {
+  background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+
+#bg__rock {
+  background: linear-gradient(to right, #c1c161 0%, #c1c161 0%, #d4d4b1 100%);
+}
+
+#bg__psychic {
+  background: linear-gradient(to top, #7028e4 0%, #e5b2ca 100%);
+}
+
+#bg__fighting {
+  background: linear-gradient(to top, #f43b47 0%, #453a94 100%);
+}
+
+#bg__ghost {
+  background: linear-gradient(to top, #f43b47 0%, #453a94 100%);
+}
+
+#bg__ice {
+  background: linear-gradient(to top, #f43b47 0%, #453a94 100%);
+}
+
+#bg__dragon {
+  background: linear-gradient(to top, #f43b47 0%, #453a94 100%);
+}
+
+#bg__dark {
+  background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+}
+
+#bg__steel {
+  background: linear-gradient(-180deg, #BCC5CE 0%, #929EAD 98%);
+}
+
 .overlay2 {
   background: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
   overflow: hidden;
@@ -228,10 +300,11 @@ section .load-more {
   left: 0;
   right: 0;
   z-index: 99;
-  transform: translateY(100%);
+  transform: translateX(100%);
 }
 
 .overlay2__pikachu {
+  width: 40%;
   z-index: 1;
   position: absolute;
   top: 43%;
@@ -393,5 +466,9 @@ section .load-more {
   .grid-container__left small {
     font-size: .5rem;
   }
+}
+
+.hide {
+  display: none;
 }
 /*# sourceMappingURL=main.css.map */

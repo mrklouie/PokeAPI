@@ -238,6 +238,76 @@ section{
 }
 
 
+#bg__grass{
+    @include getPokemonColor($list-gradient-grass)
+}
+
+#bg__poison{
+    @include getPokemonColor($list-gradient-poison)
+}
+
+#bg__fire{
+    @include getPokemonColor($list-gradient-fire)
+}
+
+#bg__water{
+    @include getPokemonColor($list-gradient-water)
+}
+
+#bg__bug{
+    @include getPokemonColor($list-gradient-bug)
+}
+
+#bg__flying{
+    @include getPokemonColor($list-gradient-flying)
+}
+
+#bg__fairy{
+    @include getPokemonColor($list-gradient-fairy)
+}
+
+#bg__ground{
+    @include getPokemonColor($list-gradient-ground)
+}
+#bg__electric{
+    @include getPokemonColor($list-gradient-electric)
+}
+#bg__normal{
+    @include getPokemonColor($list-gradient-normal)
+}
+
+#bg__rock{
+    @include getPokemonColor($list-gradient-rock)
+}
+
+#bg__psychic{
+    @include getPokemonColor($list-gradient-psychic)
+}
+
+#bg__fighting{
+    @include getPokemonColor($list-gradient-fighting)
+}
+
+#bg__ghost{
+    @include getPokemonColor($list-gradient-fighting)
+}
+
+#bg__ice{
+    @include getPokemonColor($list-gradient-fighting)
+}
+
+#bg__dragon{
+    @include getPokemonColor($list-gradient-fighting)
+}
+#bg__dark{
+    @include getPokemonColor($list-gradient-dark)
+}
+#bg__steel{
+    @include getPokemonColor($list-gradient-steel)
+}
+
+
+
 
 .overlay2{
 
@@ -251,9 +321,10 @@ section{
     right: 0;
     z-index: 99;
     // display: none;
-    transform: translateY(100%);
+    transform: translateX(100%);
 
     &__pikachu{
+        width: 40%;
         z-index: 1;
         position: absolute;
         top: 43%;
@@ -446,4 +517,10 @@ section{
 
         }
     }
+}
+
+
+
+.hide{
+    display: none;
 }
