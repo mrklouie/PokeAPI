@@ -40,9 +40,9 @@ function fetchAllPokemon(){
                 pokemons = data.map(pokemon=>{
                     const id = pokemon.id.toString();
                     const cardTemplate = document.getElementById("cardTemplate").content.children[0].cloneNode(true);
-                    cardTemplate.setAttribute("data-target-id", `${id}`);
                     const pokeName = cardTemplate.querySelector(".poke-name");
                     const pokeId = cardTemplate.querySelector(".poke-id");
+                    pokeId.setAttribute("data-target-id", `${id}`);
                     pokeName.innerHTML = `<p>${pokemon.name}</p>`
                     pokeId.innerHTML = `<p>#${id.padStart("4", "0")}</p>`;
                     const name = pokemon.name;

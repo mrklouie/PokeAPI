@@ -38,8 +38,10 @@ window.addEventListener("click", e=>{
     if(!e.target.closest("#search") && !e.target.closest(".card-container")){
         document.querySelector(".results-wrapper").style.display = "none"
     }else if(e.target.closest(".card-container")){
-       const id = e.target.dataset.targetId;
-       
+        const element = e.target;
+        module.search.value = ""
+        ewan(element)
+    
     }
 })
 
@@ -122,66 +124,75 @@ const createPokemon=(data)=>{
         `
     })    
     loadScreen.hide();
-        const cards = document.querySelectorAll(".grid-container__card");
-        cards.forEach(card=>{ 
-            card.addEventListener("click",async()=>{
-                const id = card.querySelector("[data-target-id]").dataset.targetId;
-                console.log(`Pokemon ID: ${id}`);   
-                loadScreen.show();
-                const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-                const data = await res.json();  
-    
-                //Properties na ipapasa ko
-                const image = data.sprites.other.dream_world.front_default;
-                const name = data.name;
-                const weight = data.weight;
-                const height = data.height;
-                const types = data.types;
-                const firstType = types[0].type.name;
-                let secondType = "";
-                if(types[1]){
-                    secondType = types[1].type.name
-                }
-                let abilities = data.abilities.map(ability=>ability.ability.name)
-                abilities = abilities.join(", ")
-                const res2 = await fetch(`${data.species.url}`)
-                const data2 = await res2.json();
-                loadScreen.hide();
-                const habitat = data2.habitat.name
-                const eggGroup = data2.egg_groups.map(egg=>egg.name)
-                const eggGroup1 = eggGroup[0]
-                let eggGroup2 = ""
-                if(eggGroup[1]){
-                    eggGroup2 = eggGroup[1]
-                }
-                timeline.play()
-                document.querySelector("html").style.overflow = "hidden"
-                const pokemons = 
-                {
-                    abilities: abilities,
-                    image: image,
-                    name: name,
-                    height: height,
-                    weight: weight,
-                    id: id,
-                    type1: firstType,
-                    type2: secondType,
-                    habitat: habitat,
-                    eggGroup1: eggGroup1,
-                    eggGroup2: eggGroup2
-                }
-                console.log(pokemons)
-                generateElement(pokemons);
-            })
+    const cards = document.querySelectorAll(".grid-container__card");
+    cards.forEach(card=>{ 
+        card.addEventListener("click", ()=>{
+            ewan(card)
         })
+    })
+
+}
+
+
+async function ewan(card){
    
+    const id = card.querySelector("[data-target-id]").dataset.targetId;
+    console.log(`Pokemon ID: ${id}`);   
+    loadScreen.show();
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    const data = await res.json();  
+
+    //Properties na ipapasa ko
+    const image = data.sprites.other.dream_world.front_default;
+    const name = data.name;
+    const weight = data.weight;
+    const height = data.height;
+    const types = data.types;
+    const firstType = types[0].type.name;
+    let secondType = "";
+    if(types[1]){
+        secondType = types[1].type.name
+    }
+    let abilities = data.abilities.map(ability=>ability.ability.name)
+    abilities = abilities.join(", ")
+    const res2 = await fetch(`${data.species.url}`)
+    const data2 = await res2.json();
+    loadScreen.hide();
+    document.querySelector(".results-wrapper").style.display = "none"
+    const habitat = data2.habitat.name
+    const eggGroup = data2.egg_groups.map(egg=>egg.name)
+    const eggGroup1 = eggGroup[0]
+    let eggGroup2 = ""
+    if(eggGroup[1]){
+        eggGroup2 = eggGroup[1]
+    }
+    timeline.play()
+    document.querySelector("html").style.overflow = "hidden"
+    const pokemons = 
+    {
+        abilities: abilities,
+        image: image,
+        name: name,
+        height: height,
+        weight: weight,
+        id: id,
+        type1: firstType,
+        type2: secondType,
+        habitat: habitat,
+        eggGroup1: eggGroup1,
+        eggGroup2: eggGroup2
+    }
+    console.log(pokemons)
+    generateElement(pokemons);
+}
+
+    
 
     back.addEventListener("click",()=>{
         timeline.reverse(0.6)
         document.querySelector("html").style.overflow = "unset"
     })
 
-}
 
 //Trigger this after clicking
 //After fetching ibalik mo naman sa 'Load more'

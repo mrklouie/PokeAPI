@@ -95,10 +95,13 @@ header .search-wrapper .results-wrapper {
 }
 
 header .search-wrapper .results-wrapper .card-container {
+  position: relative;
+  z-index: 99;
   display: none;
 }
 
 header .search-wrapper .results-wrapper .card-container.show {
+  z-index: -2;
   display: block;
   padding: 2em;
   display: flex;
@@ -112,10 +115,6 @@ header .search-wrapper .results-wrapper .card-container.show {
 
 header .search-wrapper .results-wrapper .card-container > p {
   pointer-events: none;
-}
-
-header .search-wrapper .results-wrapper > * + * {
-  border-top: 1px solid #707070;
 }
 
 section {
@@ -515,7 +514,7 @@ section .load-more {
 @media (max-width: 360px) {
   section {
     padding: 0 1em;
-    margin: 7em 0;
+    margin: 1em 0;
   }
   .grid-container {
     grid-template-columns: 1fr 1fr;
