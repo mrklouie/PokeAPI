@@ -512,8 +512,12 @@ section .load-more {
 }
 
 @media (max-width: 360px) {
+  header {
+    margin-top: 2em;
+    padding: 1.5em;
+  }
   section {
-    padding: 0 1em;
+    padding: 0 1.5em;
     margin: 1em 0;
   }
   .grid-container {

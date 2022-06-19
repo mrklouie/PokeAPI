@@ -158,8 +158,12 @@ async function ewan(card){
     const res2 = await fetch(`${data.species.url}`)
     const data2 = await res2.json();
     loadScreen.hide();
-    document.querySelector(".results-wrapper").style.display = "none"
-    const habitat = data2.habitat.name
+    document.querySelector(".results-wrapper").style.display = "none";
+    let habitat = "Not available";
+    if(data2.habitat){
+        habitat = data2.habitat.name
+    }
+    // const habitat = data2.habitat.name
     const eggGroup = data2.egg_groups.map(egg=>egg.name)
     const eggGroup1 = eggGroup[0]
     let eggGroup2 = ""
