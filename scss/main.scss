@@ -43,27 +43,104 @@ body{
 }
 
 header{
+    // outline: 1px solid black;
+    font-size: 1.3rem;
     z-index: 2;
-    position: fixed;
     top: 0;
     width: 100%;
     padding: 2em;
 
-    & .go-back{
-        cursor: pointer;
-        transform: rotate(180deg);
-        display: inline-block;
-        font-size: 2rem;
-    }    
-    
+
+    & small{
+        display: block;
+        margin: .5em 0;
+    }
+
+
+    & .search-wrapper{  
+        position: relative;
+        width: 100%;
+        height: 70px;
+   
+        & #search{
+            background-color: #F7EBED;
+           position: absolute;
+           width: 100%;
+           height: 100%;
+        //    padding: 2em;
+            outline: none;
+            border: none;
+            padding: 2em 2em 2em 5em;
+           -webkit-appearance: none;
+           border-radius: 10px;
+           font-size: .8rem;
+        }
+
+
+        & .btn{
+            display: grid;
+            place-content: center;
+            background-color: transparent;
+            position: absolute;
+            height: 100%;
+            width: 50px;
+            color: #7A9595;
+            top: 0;
+            left: .5rem;
+            // position: absolute;
+            // background-color: blue;
+            // color: white;
+            // height: 100%;
+        }
+
+        & .results-wrapper{
+            z-index: 99;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            background-color: white;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            & .card-container{
+                display: none;
+                &.show{
+                    display: block;
+                    padding: 2em;
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    font-size: 1rem;
+                    width: 100%;
+                    height: 75px;
+                }
+
+                & > p {
+                    pointer-events: none;
+                }
+            }
+            //lahat ng direct child nya na may element before it
+            & > * + *{
+                border-top: 1px solid #707070;
+            }
+
+        }
+    }
+
 }
 
+
+
+
+
+
+
 section{
-    margin-top: 5em;
-    padding: 1em 2em 3em 2em;
+    margin-top: 1em;
+    padding: 0 2em 3em 2em;
     min-height: 100vh;
     position: relative;
-    top: 71px;
 
 
     & .load-more{
@@ -450,7 +527,7 @@ section{
 
 
     &__mid{
-        padding-top: .5em;
+        padding: 1.5em 0;
         // outline: 1px solid black;
         display: grid;
         grid-template-columns: 1fr 2fr;
@@ -464,7 +541,9 @@ section{
     &__bottom{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        gap: 5px;
+        grid-auto-rows: auto;
+        
+        gap: 1px;
         & .egg-grass{
             grid-row: 5;
             grid-column: 2/3;

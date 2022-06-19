@@ -2,6 +2,9 @@ import * as module from "./gsap.js";
 
 
 
+
+module.fetchAllPokemon();
+
 //=========ALL VARIABLES HERE=========//
 
 const back = document.querySelector(".back");
@@ -29,6 +32,16 @@ timeline.to(".overlay2",{
 function capitalize(el){
     return el.charAt(0).toUpperCase() + el.substring(1);
 }
+
+
+window.addEventListener("click", e=>{
+    if(!e.target.closest("#search") && !e.target.closest(".card-container")){
+        document.querySelector(".results-wrapper").style.display = "none"
+    }else if(e.target.closest(".card-container")){
+       const id = e.target.dataset.targetId;
+       
+    }
+})
 
 
 const fetchPokemon = async(url)=>{
@@ -201,7 +214,7 @@ const generateElement = (pokemon)=>{
                     <div class="contents__row-2-col-1 col-1">Height</div>
                     <div class="contents__row-2-col-2">${pokemon.height}"</div>
                     <div class="contents__row-3-col-1 col-1">Weight</div>
-                    <div class="contents__row-3-col-2">${pokemon.weight}</div>
+                    <div class="contents__row-3-col-2">${pokemon.weight} lbs</div>
                     <div class="contents__row-4-col-1 col-1">Abilities</div>
                     <div class="contents__row-4-col-2">${pokemon.abilities}</div>
                     `

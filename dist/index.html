@@ -59,26 +59,42 @@
       </div>
       <div class="overlay2__bottom"></div>
     </div>
-    <img id="pukeBall" src="/dist/assets/no-outline-pukeballs.svg" alt="" />
+    <img id="pukeBall" src="/dist/assets/no-outline-pukeballs.svg" />
     <header>
-      <span class="material-icons go-back"> trending_flat </span>
-      <h1 class="title">Pokedex</h1>
+      <h1 class="title">Pokédex</h1>
+      <small
+        >Srach for a Pokémon by name or using it's National Pokédex
+        number.</small
+      >
+      <div class="search-wrapper">
+        <input type="search" id="search" placeholder="Name or Number" />
+        <div class="btn"><span class="material-icons"> search </span></div>
+        <div class="results-wrapper"></div>
+        <template id="cardTemplate">
+          <div class="card-container">
+            <p class="poke-name"></p>
+            <p class="poke-id"></p>
+          </div>
+        </template>
+      </div>
     </header>
     <section>
       <div class="grid-container">
         <!-- Card will generate from JavaScript -->
-        <!-- <div class="grid-container__card">
-          <div class="grid-container__left">
-            <div class="grid-container__texts">
-              <h2>Bulbasor</h2>
-              <small>Grass</small>
-              <small>Poison</small>
+        <template>
+          <div class="grid-container__card">
+            <div class="grid-container__left">
+              <div class="grid-container__texts">
+                <h2>Bulbasor</h2>
+                <small>Grass</small>
+                <small>Poison</small>
+              </div>
+            </div>
+            <div class="grid-container__right">
+              <img src="" alt="" />
             </div>
           </div>
-          <div class="grid-container__right">
-            <img src="" alt="" />
-          </div>
-        </div> -->
+        </template>
       </div>
       <div class="load-more">Load more....</div>
     </section>

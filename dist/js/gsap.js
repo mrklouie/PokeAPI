@@ -1,4 +1,5 @@
 export { load } from "./load.js";
+export { container, search, fetchAllPokemon, resultWrapper, id, promises, pokemons  } from "./search.js";
 export { timeline }
 
 
