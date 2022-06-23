@@ -135,7 +135,6 @@ const createPokemon=(data)=>{
 
 
 async function ewan(card){
-   
     const id = card.querySelector("[data-target-id]").dataset.targetId;
     console.log(`Pokemon ID: ${id}`);   
     loadScreen.show();
@@ -187,7 +186,7 @@ async function ewan(card){
         eggGroup2: eggGroup2
     }
     console.log(pokemons)
-    generateElement(pokemons);
+    about(pokemons);
 }
 
     
@@ -212,9 +211,7 @@ fetchPokemon("https://pokeapi.co/api/v2/pokemon?offset=0&Limit=20");
 
 
 
-const generateElement = (pokemon)=>{
-    return new Promise((resolve,reject)=>{
-        try{
+const about = (pokemon)=>{
             const overlayBackground = document.querySelector(".overlay2");
             const pokemonTypes = document.querySelector(".left");
             const pokemonImage = document.querySelector(".pokemon-img");
@@ -254,13 +251,13 @@ const generateElement = (pokemon)=>{
             }else{
                 pokemonType2.style.display = "none"
             }
-            id.textContent = `#${pokemon.id.padStart("4", "0")}`
-            
-            resolve("Resolved!")
-        }catch(err){
-            reject(new Error("Something went wrong", err))
-        }
-    })
+            id.textContent = `#${pokemon.id.padStart("4", "0")}` 
+}
+
+
+//Create a funciton para mag c-create ng element para sa Base Stats and yung tatanggap sya ng parameter galing kay function ewan
+const baseStats=()=>{
+    
 }
 
 

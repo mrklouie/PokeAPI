@@ -44,6 +44,7 @@ body{
 
 header{
     // outline: 1px solid black;
+    margin-top: 2em;
     font-size: 1.3rem;
     z-index: 2;
     top: 0;
@@ -401,7 +402,7 @@ section{
     right: 0;
     z-index: 99;
     // display: none;
-    transform: translateX(100%);
+    // transform: translateX(100%);
 
     &__pikachu{
         width: 40%;
@@ -477,17 +478,16 @@ section{
             bottom: 0;
             height: 90%;
             width: 100%;
-            // outline: 1px solid black;
+           
+            // background-color: black;
         }
     }
 }
 
 
 .contents{
-    font-size: .8rem;
+    font-size: .9rem;
     padding: 1.5em;
-
-
     & .col-1{
         color: rgba(0,0,0,0.5) !important
     }
@@ -561,6 +561,45 @@ section{
         margin-top: .5em;
         font-size: 1.2em !important;
     }
+
+    &__base-stats{
+        width: 100%;
+        height: 100%;
+    }
+
+    &__grid-container{
+        // margin-top: 1em;
+        padding: 2em 0;
+        // outline: 1px solid black;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 7fr;
+        justify-items: center;
+        align-items: center;
+
+        & > * {
+            // outline: 1px solid black;
+        }
+    }
+
+
+    &__progress-bar{
+        position: relative;
+        width: 90%;
+        height: 10px;
+        border-radius: 50px;
+        background-color:#F7EBED ;
+
+        &::before{
+            border-radius: 50px;
+            position: absolute;
+            content: "";
+            width: 50%;
+            height: 100%;
+            background-color: salmon;
+        }
+    }
 }
 
 
@@ -569,7 +608,7 @@ section{
 
 
     header{
-        margin-top: 2em;
+        margin-top: 4em;
         padding: 1.5em;
     }
     section{
