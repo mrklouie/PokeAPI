@@ -30,6 +30,18 @@ $font-weights:(
 
 
 
+$font-colors:(
+    greyColor: rgba(0, 0, 0, 0.5)
+);
+
+
+
+@function getFontColor($color){
+    @return map-get($font-colors , $color )
+}
+
+
+
 
 @mixin getPokemonColor($list){
     background: linear-gradient($list)

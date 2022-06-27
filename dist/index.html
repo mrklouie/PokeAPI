@@ -29,65 +29,77 @@
       </div>
       <div class="overlay2__stats">
         <div class="contents">
-          <!-- <ul class="contents__header">
-            <li id="about">About</li>
-            <li id="base-stats">Base Stats</li>
-            <li id="evolution">Evolution</li>
-            <li id="moves">Moves</li>
+          <ul class="contents__header">
+            <li id="about" class="navigations">About</li>
+            <li id="base-stats" class="navigations">Base Stats</li>
+            <li id="evolution" class="navigations">Evolution</li>
+            <li id="moves" class="navigations">Moves</li>
           </ul>
-          <div class="contents__mid">
-            <div class="contents__row-1-col-1 col-1">Species</div>
-            <div class="contents__row-1-col-2">Seed</div>
-            <div class="contents__row-2-col-1 col-1">Height</div>
-            <div class="contents__row-2-col-2">2'36"(10.70cm)</div>
-            <div class="contents__row-3-col-1 col-1">Weight</div>
-            <div class="contents__row-3-col-2">15.2 lbs</div>
-            <div class="contents__row-4-col-1 col-1">Abilities</div>
-            <div class="contents__row-4-col-2">Lorem, ipsum.</div>
+          <div class="contents-wrapper">
+            <template id="template-about">
+              <div class="about-container__mid">
+                <div class="about-container__row-1-col-1 col-1">Species</div>
+                <div class="about-container__row-1-col-2">Seed</div>
+                <div class="about-container__row-2-col-1 col-1">Height</div>
+                <div class="about-container__row-2-col-2">2'36"(10.70cm)</div>
+                <div class="about-container__row-3-col-1 col-1">Weight</div>
+                <div class="about-container__row-3-col-2">15.2 lbs</div>
+                <div class="about-container__row-4-col-1 col-1">Abilities</div>
+                <div class="about-container__row-4-col-2">Lorem, ipsum.</div>
+              </div>
+              <h3 class="about-container__breeding">Breeding</h3>
+              <div class="about-container__bottom">
+                <div class="about-container__row-1-col-1 col-1 gender">
+                  Gender
+                </div>
+                <div class="about-container__row-1-col-2 gender">Male</div>
+                <div class="about-container__row-1-col-3 gender">Female</div>
+                <div class="about-container__row-2-col-1 col-1 gender">
+                  Egg Groups
+                </div>
+                <div class="about-container__row-2-col-2 gender">Monster</div>
+                <div class="about-container__row-3-col-1 col-1 egg-cycle">
+                  Egg Cycle
+                </div>
+                <div class="about-container__row-3-col-2 egg-grass">Grass</div>
+              </div>
+            </template>
           </div>
-          <div class="contents__bottom">
-            <div class="contents__breeding">Breeding</div>
-            <div class="contents__row-1-col-1 col-1 gender">Gender</div>
-            <div class="contents__row-1-col-2 gender">Male</div>
-            <div class="contents__row-1-col-3 gender">Female</div>
-            <div class="contents__row-2-col-1 col-1 gender">Egg Groups</div>
-            <div class="contents__row-2-col-2 gender">Monster</div>
-            <div class="contents__row-3-col-1 col-1 egg-cycle">Egg Cycle</div>
-            <div class="contents__row-3-col-2 egg-grass">Grass</div>
-          </div> -->
-          <!-- <template id="base-stats"> -->
-          <div class="contents__base-stats">
-            <ul class="contents__header">
-              <li id="about">About</li>
-              <li id="base-stats">Base Stats</li>
-              <li id="evolution">Evolution</li>
-              <li id="moves">Moves</li>
-            </ul>
+          <template id="template-base-stats">
             <div class="contents__grid-container">
-              <div class="contents__hp-string">HP</div>
+              <div class="contents__hp-string base-stats-string">HP</div>
               <div class="contents__hp-number">45</div>
-              <div class="contents__progress-bar"></div>
-              <div class="contents__attack-string">Attack</div>
+              <div class="contents__progress-bar">
+                <div class="progress-bar-hp"></div>
+              </div>
+              <div class="contents__attack-string base-stats-string">
+                Attack
+              </div>
               <div class="contents__attack-number">60</div>
-              <div class="contents__progress-bar"></div>
-              <div class="contents__defense-string">Defense</div>
-              <div class="contents__defense-number">48</div>
-              <div class="contents__progress-bar"></div>
-              <div class="contents__sp-atk-string">Sp. Atk</div>
+              <div class="contents__progress-bar">
+                <div class="progress-bar-attack"></div>
+              </div>
+              <div class="contents__sp-attack-string base-stats-string">
+                Sp. Atk
+              </div>
               <div class="contents__sp-attack-number">65</div>
-              <div class="contents__progress-bar"></div>
-              <div class="contents__sp-def-string">Sp. Def</div>
-              <div class="contents__hp-number">65</div>
-              <div class="contents__progress-bar"></div>
-              <div class="contents__speed-string">Speed</div>
+              <div class="contents__progress-bar">
+                <div class="progress-bar-sp-attack"></div>
+              </div>
+              <div class="contents__sp-def-string base-stats-string">
+                Sp. Def
+              </div>
+              <div class="contents__sp-def-number">65</div>
+              <div class="contents__progress-bar">
+                <div class="progress-bar-sp-def"></div>
+              </div>
+              <div class="contents__speed-string base-stats-string">Speed</div>
               <div class="contents__speed-number">45</div>
-              <div class="contents__progress-bar"></div>
-              <div class="contents__total-string">Total</div>
-              <div class="contents__total-number">317</div>
-              <div class="contents__progress-bar"></div>
+              <div class="contents__progress-bar">
+                <div class="progress-bar-speed"></div>
+              </div>
             </div>
-          </div>
-          <!-- </template> -->
+          </template>
         </div>
       </div>
       <div class="overlay2__bottom"></div>
@@ -196,6 +208,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <!-- <script type="module" src="js/app.js"></script> -->
+    <script type="module" src="js/app.js"></script>
+    <script src="js/navigation.js"></script>
   </body>
 </html>

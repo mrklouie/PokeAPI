@@ -6,7 +6,8 @@ import * as module from "./gsap.js";
 module.fetchAllPokemon();
 
 //=========ALL VARIABLES HERE=========//
-
+const baseStatsEl = document.getElementById("base-stats");
+let pokemons;
 const back = document.querySelector(".back");
 let nextUrl
 let prevUrl
@@ -23,8 +24,6 @@ timeline.to(".overlay2",{
     duration: 0.9,
     ease: Back.easeOut.config(0.2)
 })
-
-
 
 
 
@@ -140,14 +139,25 @@ async function ewan(card){
     loadScreen.show();
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
     const data = await res.json();  
-
     //Properties na ipapasa ko
+    const stats = data.stats.map(stat=>({
+        statName: stat.stat.name,
+        statValue: stat.base_stat
+    }))
+    const hp = stats[0];
+    const attack = stats[1];
+    const defense = stats[2];
+    const specialAttack = stats[3];
+    const specialDefense = stats[4];
+    const speed = stats[5];
+   
     const image = data.sprites.other.dream_world.front_default;
     const name = data.name;
     const weight = data.weight;
     const height = data.height;
     const types = data.types;
     const firstType = types[0].type.name;
+
     let secondType = "";
     if(types[1]){
         secondType = types[1].type.name
@@ -171,7 +181,7 @@ async function ewan(card){
     }
     timeline.play()
     document.querySelector("html").style.overflow = "hidden"
-    const pokemons = 
+    pokemons = 
     {
         abilities: abilities,
         image: image,
@@ -183,9 +193,14 @@ async function ewan(card){
         type2: secondType,
         habitat: habitat,
         eggGroup1: eggGroup1,
-        eggGroup2: eggGroup2
+        eggGroup2: eggGroup2,
+        hp: hp,
+        attack: attack,
+        specialAttack: specialAttack,
+        specialDefense: specialDefense,
+        speed: speed
     }
-    console.log(pokemons)
+   
     about(pokemons);
 }
 
@@ -210,67 +225,114 @@ fetchPokemon("https://pokeapi.co/api/v2/pokemon?offset=0&Limit=20");
 
 
 
-
 const about = (pokemon)=>{
-            const overlayBackground = document.querySelector(".overlay2");
-            const pokemonTypes = document.querySelector(".left");
-            const pokemonImage = document.querySelector(".pokemon-img");
-            const pokemonName = document.querySelector(".pokemon-name");
-            const pokemonType1 = document.querySelector(".type1");
-            const pokemonType2 = document.querySelector(".type2");
-            const id = document.querySelector(".id");
-            document.querySelector(".contents__mid").innerHTML = 
-            `
+  
+    const overlayBackground = document.querySelector(".overlay2");
+    const pokemonTypes = document.querySelector(".left");
+    const pokemonImage = document.querySelector(".pokemon-img");
+    const pokemonName = document.querySelector(".pokemon-name");
+    const pokemonType1 = document.querySelector(".type1");
+    const pokemonType2 = document.querySelector(".type2");
+    const id = document.querySelector(".id");
+    const contentsWrapper = document.querySelector(".contents-wrapper");
+
+    contentsWrapper.innerHTML = `
+        <div class="about-container__mid">
             <div class="contents__row-1-col-1 col-1">Habitat</div>
-                    <div class="contents__row-1-col-2">${pokemon.habitat}</div>
-                    <div class="contents__row-2-col-1 col-1">Height</div>
-                    <div class="contents__row-2-col-2">${pokemon.height}"</div>
-                    <div class="contents__row-3-col-1 col-1">Weight</div>
-                    <div class="contents__row-3-col-2">${pokemon.weight} lbs</div>
-                    <div class="contents__row-4-col-1 col-1">Abilities</div>
-                    <div class="contents__row-4-col-2">${pokemon.abilities}</div>
-                    `
-            
-            document.querySelector(".contents__bottom").innerHTML = 
-            `
-            <div class="contents__breeding">Breeding</div>
-                    <div class="contents__row-2-col-1 col-1 gender">Egg Groups</div>
-                    <div class="contents__row-2-col-2 gender">${pokemon.eggGroup1}</div>
-                    <div class="contents__row-2-col-2 gender">${pokemon.eggGroup2}</div>
-                    <div class="contents__row-3-col-1 col-1 egg-cycle">Egg Cycle</div>
-                    <div class="contents__row-3-col-2 egg-grass">${pokemon.habitat}</div>
-            `
-            //Setting the background
-            overlayBackground.setAttribute("id", `bg__${pokemon.type1}`);
-            pokemonImage.setAttribute("src", `${pokemon.image}`)
-            pokemonName.textContent = `${capitalize(pokemon.name)}`
-            pokemonType1.textContent = `${pokemon.type1}`
-            if(pokemon.type2){
-                pokemonType2.classList.toggle("hide", !pokemon.type2);
-                pokemonType2.innerHTML = `${pokemon.type2}`
-            }else{
-                pokemonType2.style.display = "none"
-            }
-            id.textContent = `#${pokemon.id.padStart("4", "0")}` 
+            <div class="about-container__row-1-col-2">${pokemon.habitat}</div>
+            <div class="about-container__row-2-col-1 col-1">Height</div>
+            <div class="about-container__row-2-col-2">${pokemon.height}"</div>
+            <div class="about-container__row-3-col-1 col-1">Weight</div>
+            <div class="about-container__row-3-col-2">${pokemon.weight} lbs</div>
+            <div class="about-container__row-4-col-1 col-1">Abilities</div>
+            <div class="about-container__row-4-col-2">${pokemon.abilities}</div>
+            </div>
+            <h3 class="about-container__breeding">Breeding</h3>
+            <div class="about-container__bottom">
+            <div class="about-container__row-2-col-1 col-1 gender">Egg Groups</div>
+            <div class="about-container__row-2-col-2 gender">${pokemon.eggGroup1}</div>
+            <div class="about-container__row-2-col-2 gender">${pokemon.eggGroup2}</div>
+            <div class="about-container__row-3-col-1 col-1 egg-cycle">Egg Cycle</div>
+            <div class="about-container__row-3-col-2 egg-grass">${pokemon.habitat}</div>
+        </div>
+    `
+
+    //Setting the background
+    overlayBackground.setAttribute("id", `bg__${pokemon.type1}`);
+    pokemonImage.setAttribute("src", `${pokemon.image}`)
+    pokemonName.textContent = `${capitalize(pokemon.name)}`
+    pokemonType1.textContent = `${pokemon.type1}`
+    if(pokemon.type2){
+    pokemonType2.classList.toggle("hide", !pokemon.type2);
+    pokemonType2.innerHTML = `${pokemon.type2}`
+    }else{
+    pokemonType2.style.display = "none"
+    }
+
+    id.textContent = `#${pokemon.id.padStart("4", "0")}`
+    // baseStats(pokemon); 
+    console.log(pokemons)
 }
 
 
 //Create a funciton para mag c-create ng element para sa Base Stats and yung tatanggap sya ng parameter galing kay function ewan
-const baseStats=()=>{
+const baseStats=(pokemon)=>{
+    console.log(pokemon)
+    const contentsWrapper = document.querySelector(".contents-wrapper");
+    const statsTemplate = document.getElementById("template-base-stats").content.children[0].cloneNode(true)
+    statsTemplate.querySelector(".contents__hp-string").textContent = pokemon.hp.statName.toUpperCase();
+    statsTemplate.querySelector(".contents__hp-number").textContent = pokemon.hp.statValue
+    statsTemplate.querySelector(".progress-bar-hp").style.width = `${pokemon.hp.statValue}%`
     
+    statsTemplate.querySelector(".contents__attack-string").textContent = capitalize(pokemon.attack.statName) 
+    statsTemplate.querySelector(".contents__attack-number").textContent = pokemon.attack.statValue
+    statsTemplate.querySelector(".progress-bar-attack").style.width = `${pokemon.attack.statValue}%`
+
+    statsTemplate.querySelector(".contents__sp-attack-string").textContent = `Sp. Atk`
+    statsTemplate.querySelector(".contents__sp-attack-number").textContent = pokemon.specialAttack.statValue
+    statsTemplate.querySelector(".progress-bar-sp-attack").style.width = `${pokemon.specialAttack.statValue}%`
+    
+    statsTemplate.querySelector(".contents__sp-def-string").textContent = `Sp. Def`
+    statsTemplate.querySelector(".contents__sp-def-number").textContent = pokemon.specialDefense.statValue
+    statsTemplate.querySelector(".progress-bar-sp-def").style.width = `${pokemon.specialDefense.statValue}%`
+    
+    statsTemplate.querySelector(".contents__speed-string").textContent =capitalize(pokemon.speed.statName) 
+    statsTemplate.querySelector(".contents__speed-number").textContent = pokemon.speed.statValue
+    statsTemplate.querySelector(".progress-bar-speed").style.width = `${pokemon.speed.statValue}%`
+    contentsWrapper.innerHTML = "";
+    contentsWrapper.append(statsTemplate);
 }
 
 
-aboutEl.addEventListener("click", async()=>{
-    gsap.fromTo(".contents",{
-        x: -150,
-        opacity: 0
-    },
-    {
-        x: 0,
-        opacity: 1
-    })
+baseStatsEl.addEventListener("click", ()=>{
+    baseStats(pokemons)
 })
+
+
+
+
+aboutEl.addEventListener("click", ()=>{
+    // // gsap.fromTo(".contents",{
+    // //     x: -150,
+    // //     opacity: 0
+    // // },
+    // // {
+    // //     x: 0,
+    // //     opacity: 1
+    // // })
+    console.log("Clicked")
+    
+    document.querySelector(".contents-wrapper").innerHTML = `
+        <div class="about-container">
+          <div class="about-container__mid">
+          </div>
+          <div class="about-container__bottom">
+          </div>
+        </div>
+    `
+    about(pokemons)
+})
+
 
 
 

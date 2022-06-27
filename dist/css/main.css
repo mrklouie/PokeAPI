@@ -362,10 +362,12 @@ section .load-more {
   left: 0;
   right: 0;
   z-index: 99;
+  transform: translateX(100%);
 }
 
 .overlay2__pikachu {
   width: 40%;
+  max-height: 200px;
   z-index: 1;
   position: absolute;
   top: 43%;
@@ -437,6 +439,10 @@ section .load-more {
   width: 100%;
 }
 
+.contents-wrapper {
+  height: 100%;
+}
+
 .contents {
   font-size: .9rem;
   padding: 1.5em;
@@ -476,41 +482,6 @@ section .load-more {
   transform-origin: left;
 }
 
-.contents__header li:first-child {
-  color: black;
-  font-weight: 700;
-}
-
-.contents__mid {
-  padding: 1.5em 0;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 5px;
-}
-
-.contents__bottom {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-rows: auto;
-  gap: 1px;
-}
-
-.contents__bottom .egg-grass {
-  grid-row: 5;
-  grid-column: 2/3;
-}
-
-.contents__bottom .egg-cycle {
-  grid-row: 5;
-}
-
-.contents__breeding {
-  font-weight: 700;
-  grid-column: 1/-1;
-  margin-top: .5em;
-  font-size: 1.2em !important;
-}
-
 .contents__base-stats {
   width: 100%;
   height: 100%;
@@ -526,6 +497,10 @@ section .load-more {
   align-items: center;
 }
 
+.contents__grid-container .base-stats-string {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .contents__progress-bar {
   position: relative;
   width: 90%;
@@ -534,13 +509,46 @@ section .load-more {
   background-color: #F7EBED;
 }
 
-.contents__progress-bar::before {
+.contents__progress-bar > * {
   border-radius: 50px;
   position: absolute;
   content: "";
-  width: 50%;
+  width: 0%;
+  max-width: 100%;
   height: 100%;
   background-color: salmon;
+}
+
+.about-container {
+  width: 100%;
+  height: 100%;
+}
+
+.about-container__mid {
+  padding: 1.2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5px;
+}
+
+.about-container__bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: auto;
+  gap: 1px;
+}
+
+.about-container__bottom .egg-grass {
+  grid-row: 5;
+  grid-column: 2/3;
+}
+
+.about-container__bottom .egg-cycle {
+  grid-row: 5;
+}
+
+.about-container__breeding {
+  margin-bottom: 1.2rem;
 }
 
 @media (max-width: 360px) {
@@ -568,5 +576,10 @@ section .load-more {
 
 .hide {
   display: none;
+}
+
+.active {
+  color: black;
+  font-weight: 700;
 }
 /*# sourceMappingURL=main.css.map */

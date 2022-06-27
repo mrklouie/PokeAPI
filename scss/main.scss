@@ -6,12 +6,9 @@
 
 html{
     scroll-behavior: smooth;
-    // overflow: hidden;
 }
 
 body{
-
-  
     & > img{
         z-index: -1;
         position: fixed;
@@ -33,6 +30,7 @@ body{
     justify-content: center;
     align-items: center;
     display: none;
+
     & h1{
         color: black;
     }
@@ -43,7 +41,6 @@ body{
 }
 
 header{
-    // outline: 1px solid black;
     margin-top: 2em;
     font-size: 1.3rem;
     z-index: 2;
@@ -68,7 +65,6 @@ header{
            position: absolute;
            width: 100%;
            height: 100%;
-        //    padding: 2em;
             outline: none;
             border: none;
             padding: 2em 2em 2em 5em;
@@ -151,7 +147,6 @@ section{
 }
 
 .grid-container{
-    
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: minmax(150px, auto);
@@ -255,13 +250,7 @@ section{
     }
 
     &__left{
-
         color: white;
-
-        & h2{
-     
-            
-        }
          
         & small{
        
@@ -398,10 +387,12 @@ section{
     right: 0;
     z-index: 99;
     // display: none;
-    // transform: translateX(100%);
+    transform: translateX(100%);
 
     &__pikachu{
         width: 40%;
+        // max-width: 140px;
+        max-height: 200px;
         z-index: 1;
         position: absolute;
         top: 43%;
@@ -414,7 +405,6 @@ section{
     &__header{
         color: white;
         padding: 1em;
-        // outline: 1px solid black;
         & .back{
             transform: rotate(180deg);
             font-size: 3rem;
@@ -439,6 +429,7 @@ section{
         justify-content: space-between;
         align-items: center;
         margin-top: 1em;
+
         & span{
             white-space: nowrap;
             width: 6em;
@@ -449,7 +440,6 @@ section{
             font-size: .9rem;
             padding: .5em
         }
-
 
         & .right{
             font-weight: getWeight(bold);
@@ -474,22 +464,23 @@ section{
             bottom: 0;
             height: 90%;
             width: 100%;
-           
-            // background-color: black;
         }
     }
 }
 
+.contents-wrapper{
+    height: 100%;
+}
 
 .contents{
     font-size: .9rem;
     padding: 1.5em;
+
     & .col-1{
         color: rgba(0,0,0,0.5) !important
     }
 
     &__header{
-
         display: flex;
         justify-content: space-between;
         list-style-type: none;
@@ -518,23 +509,65 @@ section{
                 transform-origin: left;
             }
 
-            &:first-child{
-                color: black;
-                font-weight: getWeight(bold);
-            }
         }
     }
 
 
+   
+    &__base-stats{
+        width: 100%;
+        height: 100%;
+    }
+
+    &__grid-container{
+        padding: 2em 0;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 3fr 1fr 7fr;
+        justify-items: flex-start;
+        align-items: center;
+
+        & > * {
+            // outline: 1px solid black;
+        }
+        
+        & .base-stats-string{
+            color: getFontColor(greyColor);
+        }
+    }
+
+
+    &__progress-bar{
+        position: relative;
+        width: 90%;
+        height: 10px;
+        border-radius: 50px;
+        background-color:#F7EBED ;
+
+        & > *{
+            border-radius: 50px;
+            position: absolute;
+            content: "";
+            width: 0%;
+            max-width: 100%;
+            height: 100%;
+            background-color: salmon;
+        }
+    }
+}
+
+
+.about-container{
+    width: 100%;
+    height: 100%;
+
     &__mid{
-        padding: 1.5em 0;
+        padding: 1.2rem 0;
         // outline: 1px solid black;
         display: grid;
         grid-template-columns: 1fr 2fr;
         gap: 5px;
-
-
-      
     }
 
 
@@ -553,55 +586,14 @@ section{
         }
     }
     &__breeding{
-        font-weight: getWeight(bold);
-        grid-column: 1/-1;
-        margin-top: .5em;
-        font-size: 1.2em !important;
+        // font-size: 1.2em !important;
+        margin-bottom: 1.2rem
     }
 
-    &__base-stats{
-        width: 100%;
-        height: 100%;
-    }
-
-    &__grid-container{
-        padding: 2em 0;
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-columns: 3fr 1fr 7fr;
-        justify-items: flex-start;
-        align-items: center;
-
-        & > * {
-           
-            // outline: 1px solid black;
-        }
-    }
-
-
-    &__progress-bar{
-        position: relative;
-        width: 90%;
-        height: 10px;
-        border-radius: 50px;
-        background-color:#F7EBED ;
-
-        &::before{
-            border-radius: 50px;
-            position: absolute;
-            content: "";
-            width: 50%;
-            height: 100%;
-            background-color: salmon;
-        }
-    }
 }
 
 
-
 @include iphoneXr(){
-
 
     header{
         margin-top: 4em;
@@ -646,4 +638,10 @@ section{
 
 .hide{
     display: none;
+}
+
+
+.active{
+    color: black;
+    font-weight: getWeight(bold);
 }
