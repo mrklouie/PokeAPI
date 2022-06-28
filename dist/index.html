@@ -13,7 +13,11 @@
   </head>
   <body>
     <div class="overlay2">
-      <img src="" alt="" class="overlay2__pikachu pokemon-img" />
+      <img
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg"
+        alt=""
+        class="overlay2__pikachu pokemon-img"
+      />
       <div class="overlay2__header">
         <span class="material-icons back"> trending_flat </span>
         <div class="overlay2__header-bottom">
@@ -36,35 +40,89 @@
             <li id="moves" class="navigations">Moves</li>
           </ul>
           <div class="contents-wrapper">
-            <template id="template-about">
-              <div class="about-container__mid">
-                <div class="about-container__row-1-col-1 col-1">Species</div>
-                <div class="about-container__row-1-col-2">Seed</div>
-                <div class="about-container__row-2-col-1 col-1">Height</div>
-                <div class="about-container__row-2-col-2">2'36"(10.70cm)</div>
-                <div class="about-container__row-3-col-1 col-1">Weight</div>
-                <div class="about-container__row-3-col-2">15.2 lbs</div>
-                <div class="about-container__row-4-col-1 col-1">Abilities</div>
-                <div class="about-container__row-4-col-2">Lorem, ipsum.</div>
+            <div class="evolution-chain__wrapper">
+              <div class="evolution-chain__grid-container">
+                <div class="evolution-chain__pokemon-wrapper">
+                  <div class="evolution-chain__pokemon pokemon-1">
+                    <img
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg"
+                      alt=""
+                    />
+                  </div>
+                  <p class="evolution-chain__pokemon-name">Bulbasaur</p>
+                </div>
+                <div class="evolution-chain__level-up">
+                  <span class="material-icons"> west </span>
+                  <p>Lvl 16</p>
+                </div>
+                <div class="evolution-chain__pokemon-wrapper">
+                  <div class="evolution-chain__pokemon pokemon-1">
+                    <img
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg"
+                      alt=""
+                    />
+                  </div>
+                  <p class="evolution-chain__pokemon-name">Bulbasaur</p>
+                </div>
+                <div class="evolution-chain__pokemon-wrapper">
+                  <div class="evolution-chain__pokemon pokemon-1">
+                    <img
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg"
+                      alt=""
+                    />
+                  </div>
+                  <p class="evolution-chain__pokemon-name">Bulbasaur</p>
+                </div>
+                <div class="evolution-chain__level-up">
+                  <span class="material-icons"> west </span>
+                  <p>Lvl 16</p>
+                </div>
+                <div class="evolution-chain__pokemon-wrapper">
+                  <div class="evolution-chain__pokemon pokemon-1">
+                    <img
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg"
+                      alt=""
+                    />
+                  </div>
+                  <p class="evolution-chain__pokemon-name">Bulbasaur</p>
+                </div>
               </div>
-              <h3 class="about-container__breeding">Breeding</h3>
-              <div class="about-container__bottom">
-                <div class="about-container__row-1-col-1 col-1 gender">
-                  Gender
-                </div>
-                <div class="about-container__row-1-col-2 gender">Male</div>
-                <div class="about-container__row-1-col-3 gender">Female</div>
-                <div class="about-container__row-2-col-1 col-1 gender">
-                  Egg Groups
-                </div>
-                <div class="about-container__row-2-col-2 gender">Monster</div>
-                <div class="about-container__row-3-col-1 col-1 egg-cycle">
-                  Egg Cycle
-                </div>
-                <div class="about-container__row-3-col-2 egg-grass">Grass</div>
-              </div>
-            </template>
+            </div>
           </div>
+          <!-- <div class="evolution-chain__no-evolution-container">
+                <p>There is no evolution on this container</p>
+              </div> -->
+          <!-- <template id="evolution-chain"> -->
+
+          <!-- </template> -->
+          <template id="template-about">
+            <div class="about-container__mid">
+              <div class="about-container__row-1-col-1 col-1">Species</div>
+              <div class="about-container__row-1-col-2">Seed</div>
+              <div class="about-container__row-2-col-1 col-1">Height</div>
+              <div class="about-container__row-2-col-2">2'36"(10.70cm)</div>
+              <div class="about-container__row-3-col-1 col-1">Weight</div>
+              <div class="about-container__row-3-col-2">15.2 lbs</div>
+              <div class="about-container__row-4-col-1 col-1">Abilities</div>
+              <div class="about-container__row-4-col-2">Lorem, ipsum.</div>
+            </div>
+            <h3 class="about-container__breeding">Breeding</h3>
+            <div class="about-container__bottom">
+              <div class="about-container__row-1-col-1 col-1 gender">
+                Gender
+              </div>
+              <div class="about-container__row-1-col-2 gender">Male</div>
+              <div class="about-container__row-1-col-3 gender">Female</div>
+              <div class="about-container__row-2-col-1 col-1 gender">
+                Egg Groups
+              </div>
+              <div class="about-container__row-2-col-2 gender">Monster</div>
+              <div class="about-container__row-3-col-1 col-1 egg-cycle">
+                Egg Cycle
+              </div>
+              <div class="about-container__row-3-col-2 egg-grass">Grass</div>
+            </div>
+          </template>
           <template id="template-base-stats">
             <div class="contents__grid-container">
               <div class="contents__hp-string base-stats-string">HP</div>
@@ -208,7 +266,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script type="module" src="js/app.js"></script>
-    <script src="js/navigation.js"></script>
+    <!-- <script type="module" src="js/app.js"></script>
+    <script src="js/navigation.js"></script> -->
   </body>
 </html>

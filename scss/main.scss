@@ -84,10 +84,6 @@ header{
             color: #7A9595;
             top: 0;
             left: .5rem;
-            // position: absolute;
-            // background-color: blue;
-            // color: white;
-            // height: 100%;
         }
 
         & .results-wrapper{
@@ -129,7 +125,6 @@ header{
     }
 
 }
-
 
 
 section{
@@ -287,7 +282,6 @@ section{
 }
 
 
-
 @keyframes float {
 	0% {
 	
@@ -373,10 +367,7 @@ section{
 }
 
 
-
-
 .overlay2{
-
     @include getPokemonColor($list-gradient-grass);
     overflow: hidden;
     background-color: white;
@@ -387,7 +378,7 @@ section{
     right: 0;
     z-index: 99;
     // display: none;
-    transform: translateX(100%);
+    // transform: translateX(100%);
 
     &__pikachu{
         width: 40%;
@@ -512,8 +503,6 @@ section{
         }
     }
 
-
-   
     &__base-stats{
         width: 100%;
         height: 100%;
@@ -527,10 +516,6 @@ section{
         grid-template-columns: 3fr 1fr 7fr;
         justify-items: flex-start;
         align-items: center;
-
-        & > * {
-            // outline: 1px solid black;
-        }
         
         & .base-stats-string{
             color: getFontColor(greyColor);
@@ -564,7 +549,6 @@ section{
 
     &__mid{
         padding: 1.2rem 0;
-        // outline: 1px solid black;
         display: grid;
         grid-template-columns: 1fr 2fr;
         gap: 5px;
@@ -572,6 +556,7 @@ section{
 
 
     &__bottom{
+      
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-auto-rows: auto;
@@ -586,10 +571,86 @@ section{
         }
     }
     &__breeding{
-        // font-size: 1.2em !important;
         margin-bottom: 1.2rem
     }
 
+}
+
+.evolution-chain__wrapper{
+    width: 100%;
+    height: 100%;
+}
+
+.evolution-chain{
+    width: 100%;
+    height: 100%;
+   
+    &__no-evolution-container{
+        width: 100%; 
+ 
+        color: getFontColor(greyColor)
+
+    }
+
+
+    &__grid-container{
+        row-gap: 1.2em;
+        margin-top: 3em;
+        display: grid;
+        grid-template-columns: 2fr 1fr 2fr;
+        justify-items: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    &__level-up{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        &  > span{
+            display: block;
+            transform: rotate(180deg);
+            width: fit-content;
+            font-size: 2.5rem;
+            color: #e5e7e0;
+        }
+        & > p{
+            font-weight: getWeight(bold);
+        }
+    }
+
+    &__pokemon{
+        background-image: url("/dist/assets/no-outline-pukeballs.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        position: relative;
+        width: 100%;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & > img{
+          position: absolute;
+          width: 80%;
+        } 
+    }
+
+    &__pokemon-name{
+        text-align: center;
+    }
+
+
+    &__pokemon-wrapper{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        width: 5rem;
+        height: 5rem;
+    }
 }
 
 
@@ -616,8 +677,6 @@ section{
 
         &__left{
 
-
-
             & h2{
                 font-size: .6rem;
             }
@@ -627,10 +686,13 @@ section{
                 font-size: .5rem;
             }
         }
-
-        &__texts{
-
-        }
+    }
+    .evolution-chain__pokemon-wrapper{
+        width: 6rem;
+        height: 6rem;
+    }
+    .evolution-chain__pokemon{
+        width: 90%;
     }
 }
 

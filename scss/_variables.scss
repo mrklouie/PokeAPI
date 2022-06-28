@@ -28,8 +28,6 @@ $font-weights:(
     extraBold: 800
 );
 
-
-
 $font-colors:(
     greyColor: rgba(0, 0, 0, 0.5)
 );
@@ -38,7 +36,7 @@ $font-colors:(
 
 @function getFontColor($color){
     @return map-get($font-colors , $color )
-}
+};
 
 
 

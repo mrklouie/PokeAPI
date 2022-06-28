@@ -362,7 +362,6 @@ section .load-more {
   left: 0;
   right: 0;
   z-index: 99;
-  transform: translateX(100%);
 }
 
 .overlay2__pikachu {
@@ -551,6 +550,81 @@ section .load-more {
   margin-bottom: 1.2rem;
 }
 
+.evolution-chain__wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.evolution-chain {
+  width: 100%;
+  height: 100%;
+}
+
+.evolution-chain__no-evolution-container {
+  width: 100%;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.evolution-chain__grid-container {
+  row-gap: 1.2em;
+  margin-top: 3em;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+}
+
+.evolution-chain__level-up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.evolution-chain__level-up > span {
+  display: block;
+  transform: rotate(180deg);
+  width: fit-content;
+  font-size: 2.5rem;
+  color: #e5e7e0;
+}
+
+.evolution-chain__level-up > p {
+  font-weight: 700;
+}
+
+.evolution-chain__pokemon {
+  background-image: url("/dist/assets/no-outline-pukeballs.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  position: relative;
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.evolution-chain__pokemon > img {
+  position: absolute;
+  width: 80%;
+}
+
+.evolution-chain__pokemon-name {
+  text-align: center;
+}
+
+.evolution-chain__pokemon-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+}
+
 @media (max-width: 360px) {
   header {
     margin-top: 4em;
@@ -571,6 +645,13 @@ section .load-more {
   }
   .grid-container__left small {
     font-size: .5rem;
+  }
+  .evolution-chain__pokemon-wrapper {
+    width: 6rem;
+    height: 6rem;
+  }
+  .evolution-chain__pokemon {
+    width: 90%;
   }
 }
 

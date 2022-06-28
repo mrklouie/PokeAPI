@@ -1,12 +1,10 @@
 import * as module from "./gsap.js";
-
-
-
-
 module.fetchAllPokemon();
+
 
 //=========ALL VARIABLES HERE=========//
 const baseStatsEl = document.getElementById("base-stats");
+const evolutionEl = document.getElementById("evolution");
 let pokemons;
 const back = document.querySelector(".back");
 let nextUrl
@@ -24,7 +22,6 @@ timeline.to(".overlay2",{
     duration: 0.9,
     ease: Back.easeOut.config(0.2)
 })
-
 
 
 //=========ALL FUNCTIONS HERE=========//
@@ -164,8 +161,37 @@ async function ewan(card){
     }
     let abilities = data.abilities.map(ability=>ability.ability.name)
     abilities = abilities.join(", ")
-    const res2 = await fetch(`${data.species.url}`)
-    const data2 = await res2.json();
+    const response2 = await fetch(`${data.species.url}`)
+    const data2 = await response2.json();
+    const response3 = await fetch(`${data2.evolution_chain.url}`);
+    const data3 = await response3.json();
+
+    let evolution1Level;
+    let evolution1Name;
+    let evolution1Img;
+    let evolution2Level;
+    let evolution2Name;
+    let evolution2Img;
+
+    if(data3.chain.evolves_to[0]){
+        const firstEvolution = data3.chain.evolves_to[0]
+        evolution1Level = firstEvolution.evolution_details[0].min_level
+        evolution1Name = firstEvolution.species.name
+        const reponse4 = await fetch(`https://pokeapi.co/api/v2/pokemon/${evolution1Name}`);
+        const data4 = await reponse4.json();
+        evolution1Img = data4.sprites.other.dream_world.front_default
+        if(firstEvolution.evolves_to[0]){
+            const secondEvolution = firstEvolution.evolves_to[0];
+            evolution2Level = secondEvolution.evolution_details[0].min_level
+            evolution2Name = secondEvolution.species.name
+            const reponse5 = await fetch(`https://pokeapi.co/api/v2/pokemon/${evolution2Name}`);
+            const data5 = await reponse5.json();
+            evolution2Img = data5.sprites.other.dream_world.front_default
+        }
+    }
+
+
+    console.log(`Level ${evolution1Level}: ${evolution1Name}`)
     loadScreen.hide();
     document.querySelector(".results-wrapper").style.display = "none";
     let habitat = "Not available";
@@ -179,6 +205,7 @@ async function ewan(card){
     if(eggGroup[1]){
         eggGroup2 = eggGroup[1]
     }
+    
     timeline.play()
     document.querySelector("html").style.overflow = "hidden"
     pokemons = 
@@ -198,9 +225,21 @@ async function ewan(card){
         attack: attack,
         specialAttack: specialAttack,
         specialDefense: specialDefense,
-        speed: speed
+        speed: speed,
+        evolution: [
+            {
+                trigger_level: evolution1Level,
+                name: evolution1Name,
+                img: evolution1Img
+            },
+            {
+                trigger_level: evolution2Level,
+                name: evolution2Name,
+                img: evolution2Img
+            }
+        ]
     }
-   
+    console.log(pokemons)
     about(pokemons);
 }
 
@@ -271,7 +310,7 @@ const about = (pokemon)=>{
 
     id.textContent = `#${pokemon.id.padStart("4", "0")}`
     // baseStats(pokemon); 
-    console.log(pokemons)
+
 }
 
 
@@ -304,10 +343,25 @@ const baseStats=(pokemon)=>{
 }
 
 
+
+const generateEvolution=(pokemon)=>{
+    const evolutionTemplate = document.getElementById("evolution-chain").content.children[0].cloneNode(true);
+    const firstEvolution = evolutionTemplate.querySelector(".pokemon-1 > img");
+    // console.log(firstEvolution.setAttribute("src", pokemon.))
+    firstEvolution.setAttribute("src", pokemon.evolution[0].img)
+    console.log(firstEvolution)
+}
+
+
 baseStatsEl.addEventListener("click", ()=>{
     baseStats(pokemons)
-})
+});
 
+
+
+evolutionEl.addEventListener("click", ()=>{
+    generateEvolution(pokemons)
+});
 
 
 
