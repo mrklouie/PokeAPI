@@ -362,6 +362,7 @@ section .load-more {
   left: 0;
   right: 0;
   z-index: 99;
+  transform: translateX(100%);
 }
 
 .overlay2__pikachu {
@@ -561,7 +562,11 @@ section .load-more {
 }
 
 .evolution-chain__no-evolution-container {
+  height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: rgba(0, 0, 0, 0.5);
 }
 
@@ -576,6 +581,7 @@ section .load-more {
 }
 
 .evolution-chain__level-up {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -591,6 +597,7 @@ section .load-more {
 }
 
 .evolution-chain__level-up > p {
+  text-align: center;
   font-weight: 700;
 }
 
@@ -610,9 +617,12 @@ section .load-more {
 .evolution-chain__pokemon > img {
   position: absolute;
   width: 80%;
+  max-height: 100%;
 }
 
 .evolution-chain__pokemon-name {
+  z-index: 1;
+  font-weight: 700;
   text-align: center;
 }
 

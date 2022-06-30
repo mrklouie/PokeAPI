@@ -3,6 +3,7 @@ module.fetchAllPokemon();
 
 
 //=========ALL VARIABLES HERE=========//
+const contentsWrapper = document.querySelector(".contents-wrapper");
 const baseStatsEl = document.getElementById("base-stats");
 const evolutionEl = document.getElementById("evolution");
 let pokemons;
@@ -166,6 +167,8 @@ async function ewan(card){
     const response3 = await fetch(`${data2.evolution_chain.url}`);
     const data3 = await response3.json();
 
+    let origin;
+    let originImg;
     let evolution1Level;
     let evolution1Name;
     let evolution1Img;
@@ -174,24 +177,47 @@ async function ewan(card){
     let evolution2Img;
 
     if(data3.chain.evolves_to[0]){
-        const firstEvolution = data3.chain.evolves_to[0]
-        evolution1Level = firstEvolution.evolution_details[0].min_level
-        evolution1Name = firstEvolution.species.name
-        const reponse4 = await fetch(`https://pokeapi.co/api/v2/pokemon/${evolution1Name}`);
+        const originSpecies = data3.chain.evolves_to[0]
+        evolution1Level = originSpecies.evolution_details[0].min_level
+        evolution1Name = originSpecies.species.name
+        origin = data3.chain.species.name
+        console.log(`Origin Species: ${origin}`);
+        const response6 = await fetch(`https://pokeapi.co/api/v2/pokemon/${origin}`);
+        const data6 = await response6.json();
+        originImg = data6.sprites.other.dream_world.front_default
+        const reponse4 = await fetch(`${data6.species.url}`)
         const data4 = await reponse4.json();
-        evolution1Img = data4.sprites.other.dream_world.front_default
-        if(firstEvolution.evolves_to[0]){
-            const secondEvolution = firstEvolution.evolves_to[0];
-            evolution2Level = secondEvolution.evolution_details[0].min_level
-            evolution2Name = secondEvolution.species.name
-            const reponse5 = await fetch(`https://pokeapi.co/api/v2/pokemon/${evolution2Name}`);
-            const data5 = await reponse5.json();
-            evolution2Img = data5.sprites.other.dream_world.front_default
+     
+        const response5 = await fetch(`${data4.evolution_chain.url}`)
+        const data5 = await response5.json();
+        if(data5.chain.evolves_to[0]){
+            const firstEvolution = data5.chain.evolves_to[0];
+            evolution1Level = firstEvolution.evolution_details[0].min_level
+            evolution1Name = firstEvolution.species.name;
+            console.log(`1st Evolution: [${evolution1Level}]: ${evolution1Name}`)
+            const response7 = await fetch(`https://pokeapi.co/api/v2/pokemon/${evolution1Name}`)
+            const data7 = await response7.json();
+            evolution1Img = data7.sprites.other.dream_world.front_default; 
+
+            if(firstEvolution.evolves_to[0]){
+                const secondEvolution = firstEvolution.evolves_to[0];
+                evolution2Level = secondEvolution.evolution_details[0].min_level
+                evolution2Name = secondEvolution.species.name;
+                console.log(`2nd Evolution: [${evolution2Level}]: ${evolution2Name}`)
+                const response8 = await fetch(`https://pokeapi.co/api/v2/pokemon/${evolution2Name}`);
+                const data8 = await response8.json();
+                evolution2Img = data8.sprites.other.dream_world.front_default;
+
+
+                if(secondEvolution.evolves_to[0]){
+                    console.log("Meron pang 3rd Evolution")
+                }else{
+                    console.log("Wala ng 3rd Evolution")
+                }
+            }
         }
     }
 
-
-    console.log(`Level ${evolution1Level}: ${evolution1Name}`)
     loadScreen.hide();
     document.querySelector(".results-wrapper").style.display = "none";
     let habitat = "Not available";
@@ -227,6 +253,10 @@ async function ewan(card){
         specialDefense: specialDefense,
         speed: speed,
         evolution: [
+            {
+                originSpecies: origin,
+                originImage: originImg
+            },
             {
                 trigger_level: evolution1Level,
                 name: evolution1Name,
@@ -273,7 +303,7 @@ const about = (pokemon)=>{
     const pokemonType1 = document.querySelector(".type1");
     const pokemonType2 = document.querySelector(".type2");
     const id = document.querySelector(".id");
-    const contentsWrapper = document.querySelector(".contents-wrapper");
+    
 
     contentsWrapper.innerHTML = `
         <div class="about-container__mid">
@@ -346,10 +376,65 @@ const baseStats=(pokemon)=>{
 
 const generateEvolution=(pokemon)=>{
     const evolutionTemplate = document.getElementById("evolution-chain").content.children[0].cloneNode(true);
-    const firstEvolution = evolutionTemplate.querySelector(".pokemon-1 > img");
-    // console.log(firstEvolution.setAttribute("src", pokemon.))
-    firstEvolution.setAttribute("src", pokemon.evolution[0].img)
-    console.log(firstEvolution)
+    if(pokemon.evolution[1].name){
+        
+        const gridContainer = document.createElement("div");
+        gridContainer.setAttribute("class", "evolution-chain__grid-container");
+
+        // Current Pokemon
+        const pokemonWrapper = document.createElement("div");
+        pokemonWrapper.setAttribute("class", "evolution-chain__pokemon-wrapper")
+        const pokemon1 = document.createElement("div")
+        pokemon1.setAttribute("class", "evolution-chain__pokemon pokemon-1")
+        const pokemonImg = document.createElement("img")
+        pokemonImg.setAttribute("src", `${pokemon.evolution[0].originImage}`)
+        const pokemonName = document.createElement("p")
+        pokemonName.setAttribute("class", "evolution-chain__pokemon-name")
+        pokemonName.textContent = `${capitalize(pokemon.evolution[0].originSpecies)}`
+        
+
+        //trigger-level
+        const levelUp = document.createElement("div")
+        levelUp.setAttribute("class", "evolution-chain__level-up");
+        const levelUpArrowRight = document.createElement("span")
+        levelUpArrowRight.setAttribute("class", "material-icons");
+        levelUpArrowRight.textContent = "west";
+        const pokemonLevel = document.createElement("p")
+        pokemonLevel.setAttribute("class", "pokemon-level")
+        if(!pokemon.evolution[1].trigger_level){
+            pokemonLevel.textContent = `Not available`
+        }else{
+            pokemonLevel.textContent = `Lvl${pokemon.evolution[1].trigger_level}`;
+        }
+
+
+
+        //Evolution 
+        const pokemonWrapper2 = document.createElement("div");
+        pokemonWrapper2.setAttribute("class", "evolution-chain__pokemon-wrapper")
+
+        const pokemon2 = document.createElement("div")
+        pokemon2.setAttribute("class", "evolution-chain__pokemon pokemon-1")
+        const pokemonImg2 = document.createElement("img")
+        pokemonImg2.setAttribute("src", `${pokemon.evolution[1].img}`)
+        const pokemonName2 = document.createElement("p")
+        pokemonName2.setAttribute("class", "evolution-chain__pokemon-name")
+        pokemonName2.textContent = `${capitalize(pokemon.evolution[1].name)}`
+
+
+        //appending
+        evolutionTemplate.append(gridContainer)
+        gridContainer.append(pokemonWrapper, levelUp, pokemonWrapper2)
+        levelUp.append(levelUpArrowRight, pokemonLevel)
+        pokemonWrapper.append(pokemon1, pokemonName)
+        pokemon1.append(pokemonImg)
+        pokemonWrapper2.append(pokemon2, pokemonName2)
+        pokemon2.append(pokemonImg2)
+        contentsWrapper.innerHTML = ""
+        contentsWrapper.append(evolutionTemplate)
+    }else{
+        console.log(`Wala ${pokemon.evolution[0].name}`)
+    }
 }
 
 

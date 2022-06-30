@@ -378,7 +378,7 @@ section{
     right: 0;
     z-index: 99;
     // display: none;
-    // transform: translateX(100%);
+    transform: translateX(100%);
 
     &__pikachu{
         width: 40%;
@@ -586,8 +586,11 @@ section{
     height: 100%;
    
     &__no-evolution-container{
+        height: 100%;
         width: 100%; 
- 
+        display: flex;    
+        justify-content: center;
+        align-items: center;
         color: getFontColor(greyColor)
 
     }
@@ -604,6 +607,7 @@ section{
     }
 
     &__level-up{
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -616,6 +620,7 @@ section{
             color: #e5e7e0;
         }
         & > p{
+            text-align: center;
             font-weight: getWeight(bold);
         }
     }
@@ -635,10 +640,13 @@ section{
         & > img{
           position: absolute;
           width: 80%;
+          max-height: 100%;
         } 
     }
 
     &__pokemon-name{
+        z-index: 1;
+        font-weight: getWeight(bold);
         text-align: center;
     }
 
@@ -695,8 +703,6 @@ section{
         width: 90%;
     }
 }
-
-
 
 .hide{
     display: none;
