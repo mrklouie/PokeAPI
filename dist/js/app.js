@@ -195,9 +195,10 @@ async function ewan(card){
             evolution1Level = firstEvolution.evolution_details[0].min_level
             evolution1Name = firstEvolution.species.name;
             console.log(`1st Evolution: [${evolution1Level}]: ${evolution1Name}`)
-            const response7 = await fetch(`https://pokeapi.co/api/v2/pokemon/${evolution1Name}`)
-            const data7 = await response7.json();
-            evolution1Img = data7.sprites.other.dream_world.front_default; 
+            try {
+                const response7 = await fetch(`https://pokeapi.co/api/v2/pokemon/${evolution1Name}`)
+                const data7 = await response7.json();
+                evolution1Img = data7.sprites.other.dream_world.front_default; 
 
             if(firstEvolution.evolves_to[0]){
                 const secondEvolution = firstEvolution.evolves_to[0];
@@ -215,6 +216,10 @@ async function ewan(card){
                     console.log("Wala ng 3rd Evolution")
                 }
             }
+            } catch (err) {
+                alert("Data not available")
+            }
+            
         }
     }
 
@@ -254,16 +259,20 @@ async function ewan(card){
         speed: speed,
         evolution: [
             {
-                originSpecies: origin,
-                originImage: originImg
+                name: origin,
+                img: originImg
             },
             {
-                trigger_level: evolution1Level,
+                trigger_level: evolution1Level
+            },
+            { 
                 name: evolution1Name,
                 img: evolution1Img
             },
             {
                 trigger_level: evolution2Level,
+            },
+            {
                 name: evolution2Name,
                 img: evolution2Img
             }
@@ -375,66 +384,114 @@ const baseStats=(pokemon)=>{
 
 
 const generateEvolution=(pokemon)=>{
-    const evolutionTemplate = document.getElementById("evolution-chain").content.children[0].cloneNode(true);
-    if(pokemon.evolution[1].name){
+    // let levelUp = null;
+    // let evolutionTemplate = document.getElementById("evolution-chain").content.children[0].cloneNode(true);
+    // let i = 0
+    // const gridContainer = document.createElement("div");
+    // gridContainer.setAttribute("class", "evolution-chain__grid-container");
+    // console.log("Betlog")
+    // pokemon.evolution.forEach(data=>{
+    //     i += 1
+    //     console.log(i)
         
-        const gridContainer = document.createElement("div");
-        gridContainer.setAttribute("class", "evolution-chain__grid-container");
+    //     if(data.name){
+    //         const pokemonWrapper = document.createElement("div");
+    //         pokemonWrapper.setAttribute("class", "evolution-chain__pokemon-wrapper")
+    //         const pokemon1 = document.createElement("div")
+    //         pokemon1.setAttribute("class", "evolution-chain__pokemon pokemon-1")
+    //         const pokemonImg = document.createElement("img")
+    //         pokemonImg.setAttribute("src", `${data.img}`)
+    //         const pokemonName = document.createElement("p")
+    //         pokemonName.setAttribute("class", "evolution-chain__pokemon-name")
+    //         pokemonName.textContent = `${capitalize(data.name)}`
+    //     }else if(data.trigger_level){
+    //         const levelUp = document.createElement("div")
+    //         levelUp.setAttribute("class", "evolution-chain__level-up");
+    //         const levelUpArrowRight = document.createElement("span")
+    //         levelUpArrowRight.setAttribute("class", "material-icons");
+    //         levelUpArrowRight.textContent = "west";
+    //         const pokemonLevel = document.createElement("p")
+    //         pokemonLevel.setAttribute("class", "pokemon-level")
+    //         if(!pokemon.evolution[1].trigger_level){
+    //             pokemonLevel.textContent = `Not available`
+    //         }else{
+    //             pokemonLevel.textContent = `Lvl${pokemon.evolution[1].trigger_level}`;
+    //         }
+    //     }
+    // })
+    
+  
+    // const evolutionTemplate = document.getElementById("evolution-chain").content.children[0].cloneNode(true);
+    // if(pokemon.evolution[1].name){
+        
+    //     const gridContainer = document.createElement("div");
+    //     gridContainer.setAttribute("class", "evolution-chain__grid-container");
 
-        // Current Pokemon
-        const pokemonWrapper = document.createElement("div");
-        pokemonWrapper.setAttribute("class", "evolution-chain__pokemon-wrapper")
-        const pokemon1 = document.createElement("div")
-        pokemon1.setAttribute("class", "evolution-chain__pokemon pokemon-1")
-        const pokemonImg = document.createElement("img")
-        pokemonImg.setAttribute("src", `${pokemon.evolution[0].originImage}`)
-        const pokemonName = document.createElement("p")
-        pokemonName.setAttribute("class", "evolution-chain__pokemon-name")
-        pokemonName.textContent = `${capitalize(pokemon.evolution[0].originSpecies)}`
+    //     // Current Pokemon
+        // const pokemonWrapper = document.createElement("div");
+        // pokemonWrapper.setAttribute("class", "evolution-chain__pokemon-wrapper")
+        // const pokemon1 = document.createElement("div")
+        // pokemon1.setAttribute("class", "evolution-chain__pokemon pokemon-1")
+        // const pokemonImg = document.createElement("img")
+        // pokemonImg.setAttribute("src", `${pokemon.evolution[0].originImage}`)
+        // const pokemonName = document.createElement("p")
+        // pokemonName.setAttribute("class", "evolution-chain__pokemon-name")
+        // pokemonName.textContent = `${capitalize(pokemon.evolution[0].originSpecies)}`
         
 
-        //trigger-level
-        const levelUp = document.createElement("div")
-        levelUp.setAttribute("class", "evolution-chain__level-up");
-        const levelUpArrowRight = document.createElement("span")
-        levelUpArrowRight.setAttribute("class", "material-icons");
-        levelUpArrowRight.textContent = "west";
-        const pokemonLevel = document.createElement("p")
-        pokemonLevel.setAttribute("class", "pokemon-level")
-        if(!pokemon.evolution[1].trigger_level){
-            pokemonLevel.textContent = `Not available`
-        }else{
-            pokemonLevel.textContent = `Lvl${pokemon.evolution[1].trigger_level}`;
-        }
+    //     //trigger-level
+        // const levelUp = document.createElement("div")
+        // levelUp.setAttribute("class", "evolution-chain__level-up");
+        // const levelUpArrowRight = document.createElement("span")
+        // levelUpArrowRight.setAttribute("class", "material-icons");
+        // levelUpArrowRight.textContent = "west";
+        // const pokemonLevel = document.createElement("p")
+        // pokemonLevel.setAttribute("class", "pokemon-level")
+        // if(!pokemon.evolution[1].trigger_level){
+        //     pokemonLevel.textContent = `Not available`
+        // }else{
+        //     pokemonLevel.textContent = `Lvl${pokemon.evolution[1].trigger_level}`;
+        // }
+
+    //     //Evolution 
+        // const pokemonWrapper2 = document.createElement("div");
+        // pokemonWrapper2.setAttribute("class", "evolution-chain__pokemon-wrapper")
+
+        // const pokemon2 = document.createElement("div")
+        // pokemon2.setAttribute("class", "evolution-chain__pokemon pokemon-1")
+        // const pokemonImg2 = document.createElement("img")
+        // pokemonImg2.setAttribute("src", `${pokemon.evolution[1].img}`)
+        // const pokemonName2 = document.createElement("p")
+        // pokemonName2.setAttribute("class", "evolution-chain__pokemon-name")
+        // pokemonName2.textContent = `${capitalize(pokemon.evolution[1].name)}`
 
 
+    //     //appending
+        // evolutionTemplate.append(gridContainer)
+        // gridContainer.append(pokemonWrapper, levelUp, pokemonWrapper2)
+        // levelUp.append(levelUpArrowRight, pokemonLevel)
+        // pokemonWrapper.append(pokemon1, pokemonName)
+        // pokemon1.append(pokemonImg)
+        // pokemonWrapper2.append(pokemon2, pokemonName2)
+        // pokemon2.append(pokemonImg2)
+        // contentsWrapper.innerHTML = ""
+        // contentsWrapper.append(evolutionTemplate)
 
-        //Evolution 
-        const pokemonWrapper2 = document.createElement("div");
-        pokemonWrapper2.setAttribute("class", "evolution-chain__pokemon-wrapper")
-
-        const pokemon2 = document.createElement("div")
-        pokemon2.setAttribute("class", "evolution-chain__pokemon pokemon-1")
-        const pokemonImg2 = document.createElement("img")
-        pokemonImg2.setAttribute("src", `${pokemon.evolution[1].img}`)
-        const pokemonName2 = document.createElement("p")
-        pokemonName2.setAttribute("class", "evolution-chain__pokemon-name")
-        pokemonName2.textContent = `${capitalize(pokemon.evolution[1].name)}`
-
-
-        //appending
-        evolutionTemplate.append(gridContainer)
-        gridContainer.append(pokemonWrapper, levelUp, pokemonWrapper2)
-        levelUp.append(levelUpArrowRight, pokemonLevel)
-        pokemonWrapper.append(pokemon1, pokemonName)
-        pokemon1.append(pokemonImg)
-        pokemonWrapper2.append(pokemon2, pokemonName2)
-        pokemon2.append(pokemonImg2)
-        contentsWrapper.innerHTML = ""
-        contentsWrapper.append(evolutionTemplate)
-    }else{
-        console.log(`Wala ${pokemon.evolution[0].name}`)
-    }
+    //     if(pokemon.evolution[2].name){
+    //         const pokemonWrapper2 = document.createElement("div");
+    //         pokemonWrapper2.setAttribute("class", "evolution-chain__pokemon-wrapper")
+    //         const pokemon2 = document.createElement("div")
+    //         pokemon2.setAttribute("class", "evolution-chain__pokemon pokemon-1")
+    //         const pokemonImg2 = document.createElement("img")
+    //         pokemonImg.setAttribute("src", `${pokemon.evolution[0].originImage}`)
+    //         const pokemonName = document.createElement("p")
+    //         pokemonName.setAttribute("class", "evolution-chain__pokemon-name")
+    //         pokemonName.textContent = `${capitalize(pokemon.evolution[0].originSpecies)}`
+            
+    //     }
+    // }else{
+    //     console.log(`Wala ${pokemon.evolution[0].name}`)
+    // }
 }
 
 
