@@ -10,7 +10,7 @@ class load{
     show(){
         this.el.classList.add("active");
         document.body.style.overflow = "hidden"
-        loadMore.innerHTML = `<img src="/dist/assets/Loading-bottom.svg"/>`
+        
 
     }
 
@@ -20,6 +20,11 @@ class load{
         document.body.style.overflowX = "hidden"
         document.body.style.overflowY = "auto"
         loadMore.innerHTML = `Load More`
+    }
+
+
+    loadNext(){
+        loadMore.innerHTML = `<img src="/dist/assets/Loading-bottom.svg"/>`
     }
 }
 

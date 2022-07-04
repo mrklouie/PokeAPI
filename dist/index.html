@@ -37,32 +37,50 @@
             <li id="about" class="navigations">About</li>
             <li id="base-stats" class="navigations">Base Stats</li>
             <li id="evolution" class="navigations">Evolution</li>
-            <li id="moves" class="navigations">Moves</li>
           </ul>
-          <div class="contents-wrapper"></div>
-          <!-- <div class="evolution-chain__no-evolution-container">
-                <p>There is no evolution on this container</p>
-              </div> -->
+          <div class="contents-wrapper">
+            <div class="evolution-chain__wrapper"></div>
+          </div>
+
+          <template id="no-evolution">
+            <div class="evolution-chain__no-evolution-container">
+              <p>There is no evolution on this pokemon</p>
+            </div>
+          </template>
           <template id="evolution-chain">
-            <div class="evolution-chain__wrapper">
-              <!-- <div class="evolution-chain__grid-container">
-                <div class="evolution-chain__pokemon-wrapper">
-                  <div class="evolution-chain__pokemon pokemon-1">
-                    <img src="" alt="" />
-                  </div>
-                  <p class="evolution-chain__pokemon-name">Bulbasaur</p>
+            <div class="evolution-chain__grid-container">
+              <div class="evolution-chain__pokemon-wrapper">
+                <div class="evolution-chain__pokemon pokemon-1">
+                  <img src="" alt="" />
                 </div>
-                <div class="evolution-chain__level-up">
-                  <span class="material-icons"> west </span>
-                  <p class="pokemon-level"></p>
+                <p class="evolution-chain__pokemon-name"></p>
+              </div>
+              <div class="evolution-chain__level-up">
+                <span class="material-icons"> west </span>
+                <p></p>
+              </div>
+              <div class="evolution-chain__pokemon-wrapper">
+                <div class="evolution-chain__pokemon pokemon-1">
+                  <img src="" alt="" />
                 </div>
-                <div class="evolution-chain__pokemon-wrapper">
-                  <div class="evolution-chain__pokemon pokemon-1">
-                    <img src="" alt="" />
-                  </div>
-                  <p class="evolution-chain__pokemon-name">Bulbasaur</p>
+                <p class="evolution-chain__pokemon-name"></p>
+              </div>
+              <div class="evolution-chain__pokemon-wrapper">
+                <div class="evolution-chain__pokemon pokemon-1">
+                  <img src="" alt="" />
                 </div>
-              </div> -->
+                <p class="evolution-chain__pokemon-name"></p>
+              </div>
+              <div class="evolution-chain__level-up">
+                <span class="material-icons"> west </span>
+                <p>Lvl 16</p>
+              </div>
+              <div class="evolution-chain__pokemon-wrapper">
+                <div class="evolution-chain__pokemon pokemon-1">
+                  <img src="" alt="" />
+                </div>
+                <p class="evolution-chain__pokemon-name"></p>
+              </div>
             </div>
           </template>
           <template id="template-about">

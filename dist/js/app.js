@@ -258,23 +258,40 @@ async function ewan(card){
         specialDefense: specialDefense,
         speed: speed,
         evolution: [
+            // {
+            //     name: origin,
+            //     img: originImg
+            // },
+            // {
+            //     trigger_level: evolution1Level
+            // },
+            // { 
+            //     name: evolution1Name,
+            //     img: evolution1Img
+            // },
+            // {
+            //     trigger_level: evolution2Level,
+            // },
+            // {
+            //     name: evolution2Name,
+            //     img: evolution2Img
+            // },
+            // {
+
+            // }
             {
-                name: origin,
-                img: originImg
+                originName: origin,
+                originImg: originImg,
+                trigger_level: evolution1Level,
+                evolves_to: evolution1Name,
+                evolves_toImg: evolution1Img
             },
             {
-                trigger_level: evolution1Level
-            },
-            { 
-                name: evolution1Name,
-                img: evolution1Img
-            },
-            {
+                originName: evolution1Name,
+                originImg: evolution1Img,
                 trigger_level: evolution2Level,
-            },
-            {
-                name: evolution2Name,
-                img: evolution2Img
+                evolves_to: evolution2Name,
+                evolves_toImg: evolution2Img
             }
         ]
     }
@@ -294,7 +311,7 @@ async function ewan(card){
 //After fetching ibalik mo naman sa 'Load more'
 loadMore.addEventListener("click", ()=>{
     fetchPokemon(nextUrl)
-  
+    loadScreen.loadNext();
 })
 
 
@@ -384,6 +401,80 @@ const baseStats=(pokemon)=>{
 
 
 const generateEvolution=(pokemon)=>{
+    const contentsWrapper = document.querySelector(".contents-wrapper");
+    const evolutionWrapper = document.createElement("div");
+    evolutionWrapper.setAttribute("class", "evolution-chain__wrapper");
+    
+    if(pokemon.evolution[0].evolves_to){
+        const gridContainer = document.createElement("div");
+        gridContainer.setAttribute("class", "evolution-chain__grid-container");
+        evolutionWrapper.append(gridContainer)
+        pokemon.evolution.forEach(pokemon=>{
+            if(pokemon.evolves_to){
+                const pokemonWrapper = document.createElement("div");
+                pokemonWrapper.setAttribute("class", "evolution-chain__pokemon-wrapper")
+                const pokemon1 = document.createElement("div")
+                pokemon1.setAttribute("class", "evolution-chain__pokemon pokemon-1")
+                const pokemonImg = document.createElement("img")
+                pokemonImg.setAttribute("src", `${pokemon.originImg}`)
+                const pokemonName = document.createElement("p")
+                pokemonName.setAttribute("class", "evolution-chain__pokemon-name")
+                pokemonName.textContent = `${capitalize(pokemon.originName)}`
+                
+                //Level up
+                const levelUp = document.createElement("div")
+                levelUp.setAttribute("class", "evolution-chain__level-up");
+                const levelUpArrowRight = document.createElement("span")
+                levelUpArrowRight.setAttribute("class", "material-icons");
+                levelUpArrowRight.textContent = "west";
+                const pokemonLevel = document.createElement("p")
+                pokemonLevel.setAttribute("class", "pokemon-level")
+                if(!pokemon.trigger_level){
+
+                    pokemonLevel.textContent = `Unknown`
+
+                }else{
+
+                    pokemonLevel.textContent = `Lvl ${pokemon.trigger_level}`;
+
+                }
+                //Evolution
+                const pokemonWrapper2 = document.createElement("div");
+                pokemonWrapper2.setAttribute("class", "evolution-chain__pokemon-wrapper")
+                const pokemon2 = document.createElement("div")
+                pokemon2.setAttribute("class", "evolution-chain__pokemon pokemon-1")
+                const pokemonImg2 = document.createElement("img")
+                pokemonImg2.setAttribute("src", `${pokemon.evolves_toImg}`)
+                const pokemonName2 = document.createElement("p")
+                pokemonName2.setAttribute("class", "evolution-chain__pokemon-name")
+                pokemonName2.textContent = `${capitalize(pokemon.evolves_to)}`
+
+
+
+                //appending
+               
+                
+                gridContainer.append(pokemonWrapper, levelUp, pokemonWrapper2)
+                levelUp.append(levelUpArrowRight, pokemonLevel)
+                pokemonWrapper.append(pokemon1, pokemonName)
+                pokemon1.append(pokemonImg)
+                pokemonWrapper2.append(pokemon2, pokemonName2)
+                pokemon2.append(pokemonImg2)
+               
+            }
+        })
+        evolutionWrapper.append(gridContainer)
+        contentsWrapper.innerHTML = ""
+        contentsWrapper.append(evolutionWrapper)
+        console.log(contentsWrapper)
+    }else{
+        const noEvolutionTemplate = document.getElementById("no-evolution").content.children[0].cloneNode(true);
+        contentsWrapper.innerHTML = "";
+        contentsWrapper.append(noEvolutionTemplate);
+
+    }
+    
+
     // let levelUp = null;
     // let evolutionTemplate = document.getElementById("evolution-chain").content.children[0].cloneNode(true);
     // let i = 0
@@ -528,7 +619,6 @@ aboutEl.addEventListener("click", ()=>{
     `
     about(pokemons)
 })
-
 
 
 
